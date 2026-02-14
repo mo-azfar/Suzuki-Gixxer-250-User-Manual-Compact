@@ -281,9 +281,7 @@
 
       topicsById = new Map((manual.topics || []).map(t => [t.id, t]));
 
-      document.getElementById("appTitle").textContent = `${manual.model} Micro Manual`;
-      document.getElementById("appSubtitle").textContent =
-        `${manual.source?.publisher || "Source"} • ${manual.source?.document || "PDF"} • ${manual.source?.region || ""}`.replace(/\s•\s$/,"");
+      document.getElementById("appTitle").textContent = `${manual.model}`;
 
       // Build nav + initial render
       renderNav("");

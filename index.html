@@ -8,101 +8,91 @@
   <style>
     :root{
       --bg:#0b0d10;
-      --panel2:#0f1318;
+      --panel:#0f1318;
+      --panel2:#121822;
       --text:#e7eef7;
       --muted:#9fb0c3;
       --accent:#5aa9ff;
 
-      --phoneW:390px;
-      --phoneH:844px;
-
       --radius:18px;
-      --shadow:0 12px 40px rgba(0,0,0,.45);
-      --drawerW:270px;
+      --shadow:0 18px 60px rgba(0,0,0,.50);
+      --drawerW: 300px;
+      --maxAppW: 1200px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-
-    /* Desktop framing (nice centered phone) */
+    html, body { height:100%; }
     body{
       margin:0;
       background: radial-gradient(1200px 800px at 30% 10%, #101827 0%, var(--bg) 55%, #07080a 100%);
       color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
     }
 
-    .phone{
-      width:min(100%, var(--phoneW));
-      height:min(calc(100vh - 32px), var(--phoneH)); /* desktop-friendly */
-      background: var(--panel2);
-      border:1px solid rgba(255,255,255,.06);
+    /* App container: desktop = 90% width, centered; mobile = full screen */
+    .app{
+      width: min(90vw, var(--maxAppW));
+      height: min(92vh, 920px);
+      margin: 4vh auto;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      overflow:hidden;
+      overflow: hidden;
+      position: relative;
       display:flex;
       flex-direction:column;
-      position:relative;
     }
 
-    /* --- FIX FOR MOBILE CLIPPING --- */
-    @media (max-width: 520px){
-      body{
-        padding:0;
-        align-items:stretch;
-        justify-content:stretch;
+    @media (max-width: 720px){
+      .app{
+        width: 100vw;
+        height: 100dvh;
+        height: 100svh;
+        margin: 0;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
       }
-      .phone{
-        width:100vw;
-        height:100dvh;            /* dynamic viewport height (correct on mobile) */
-        height:100svh;            /* fallback */
-        border-radius:0;
-        border:none;
-        box-shadow:none;
-      }
+      :root{ --drawerW: 88vw; }
     }
 
+    /* Topbar */
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 60;
-
-      height:56px;
+      z-index: 40;
+      height: 56px;
       display:flex;
       align-items:center;
       gap:10px;
-      padding:0 10px;
-
-      /* solid enough to be visible */
+      padding: 0 12px;
       background: rgba(15,19,24,.92);
       backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .btn-icon{
-      width:44px; height:44px;
+      width:44px;
+      height:44px;
       border-radius:14px;
       border:1px solid rgba(90,169,255,.55);
       background: rgba(90,169,255,.18);
       color: var(--text);
-
-      display:flex; align-items:center; justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       cursor:pointer;
       user-select:none;
-      box-shadow: 0 10px 24px rgba(0,0,0,.35);
       -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
       flex: 0 0 auto;
     }
-    .btn-icon:active{ transform: translateY(1px); }
     .btn-icon:hover{
       border-color: rgba(90,169,255,.75);
       background: rgba(90,169,255,.26);
     }
+    .btn-icon:active{ transform: translateY(1px); }
 
     .brand{
       display:flex;
@@ -120,16 +110,17 @@
     }
     .brand span{
       font-size:12px;
-      color:var(--muted);
+      color: var(--muted);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
     }
 
+    /* Main content */
     main{
       flex:1;
-      padding:14px;
       overflow:auto;
+      padding: 16px;
     }
 
     .card{
@@ -141,13 +132,14 @@
     }
     .title{ font-size:16px; margin:0 0 8px; letter-spacing:.2px; }
     .meta{ margin:0 0 10px; color:var(--muted); font-size:12px; }
+    .muted{ color: var(--muted); }
 
     .chip{
       display:inline-flex; align-items:center;
       padding:4px 8px; border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      color:var(--muted);
+      color: var(--muted);
       font-size:11px;
       margin-right:6px;
       margin-bottom:6px;
@@ -162,10 +154,10 @@
       background: rgba(255,255,255,.02);
       font-size:13px;
     }
-    .kv-row span:first-child{ color:var(--muted); }
-    .muted{ color:var(--muted); }
-    ul{ margin-top:5px; padding-left: 18px; }
-    li{ margin:6px 0; }
+    .kv-row span:first-child{ color: var(--muted); }
+
+    ul{ margin: 6px 0 0; padding-left: 18px; }
+    li{ margin: 6px 0; }
 
     /* Content accordion */
     .accordion details{
@@ -197,17 +189,17 @@
       margin-left:6px;
     }
     .accordion details[open] .chev{ transform: rotate(45deg); }
-    .accordion .acc-body{ padding:0 12px 12px; color:var(--text); }
+    .accordion .acc-body{ padding:0 12px 12px; }
 
-    /* Drawer */
+    /* Drawer + overlay */
     .overlay{
       position:absolute;
       inset:0;
-      background: rgba(0,0,0,.45);
+      background: rgba(0,0,0,.50);
       opacity:0;
       pointer-events:none;
       transition: opacity .18s ease;
-      z-index: 70;
+      z-index: 60;
     }
     .overlay.show{ opacity:1; pointer-events:auto; }
 
@@ -216,13 +208,13 @@
       top:0; left:0; bottom:0;
       width: var(--drawerW);
       background: rgba(18,22,28,.98);
-      border-right:1px solid rgba(255,255,255,.06);
+      border-right:1px solid rgba(255,255,255,.08);
       transform: translateX(-102%);
       transition: transform .18s ease;
       display:flex;
       flex-direction:column;
       padding:12px 10px;
-      z-index: 80;
+      z-index: 70;
     }
     .drawer.open{ transform: translateX(0); }
 
@@ -235,12 +227,11 @@
     }
     .drawer-title{
       font-size:11px;
-      color:var(--muted);
+      color: var(--muted);
       font-weight:700;
       letter-spacing:.6px;
       text-transform:uppercase;
     }
-
     .drawer-search{
       width:100%;
       border-radius:12px;
@@ -253,17 +244,13 @@
       margin:2px 0 10px;
     }
     .drawer-search::placeholder{ color: rgba(159,176,195,.75); }
-
-    .drawer-list{
-      overflow:auto;
-      padding-right:2px;
-    }
+    .drawer-list{ overflow:auto; padding-right:2px; }
 
     .nav-item{
       display:block;
       padding:10px 10px;
       border-radius:12px;
-      color:var(--text);
+      color: var(--text);
       text-decoration:none;
       font-size:13px;
       border:1px solid transparent;
@@ -280,7 +267,7 @@
     }
     .nav-item small{
       display:block;
-      color:var(--muted);
+      color: var(--muted);
       font-size:11px;
       margin-top:4px;
     }
@@ -297,7 +284,6 @@
       border-radius:999px;
       margin-top:6px;
     }
-
     mark{
       background: rgba(90,169,255,.22);
       color: var(--text);
@@ -357,11 +343,11 @@
 </head>
 
 <body>
-  <div class="phone" role="application" aria-label="Suzuki Gixxer 250 Compact Manual">
+  <div class="app" role="application" aria-label="Suzuki Gixxer 250 Compact Manual">
     <header class="topbar">
       <button id="menuBtn" class="btn-icon" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
         </svg>
       </button>
 
@@ -380,7 +366,7 @@
         <div class="drawer-title">Topics</div>
         <button id="closeBtn" class="btn-icon" aria-label="Close menu">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
           </svg>
         </button>
       </div>
@@ -394,7 +380,7 @@
       <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image viewer">
         <button id="lightboxClose" class="lightbox-close" aria-label="Close image">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
           </svg>
         </button>
         <img id="lightboxImg" class="lightbox-img" alt="" />
@@ -436,7 +422,6 @@
       return route || "home";
     }
 
-    // Drawer
     function openDrawer(){
       drawer.classList.add("open");
       overlay.classList.add("show");
@@ -456,7 +441,6 @@
     menuBtn.addEventListener("click", toggleDrawer);
     closeBtn.addEventListener("click", closeDrawer);
 
-    // Lightbox
     function openLightbox(src, alt=""){
       lightboxImg.src = src;
       lightboxImg.alt = alt || "Image";
@@ -520,6 +504,7 @@
 
       while((m = re.exec(s)) !== null){
         out += esc(s.slice(last, m.index));
+
         const key = m[1];
         const src = imgPathByToken(key);
 
@@ -536,11 +521,13 @@
               />
             </div>
           `;
-        }else{
+        } else {
           out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
         }
+
         last = m.index + m[0].length;
       }
+
       out += esc(s.slice(last));
       return out;
     }
@@ -717,7 +704,11 @@
         }
       }
 
-      results.sort((a,b) => (a.kind === "title/summary" ? -1 : 1) - (b.kind === "title/summary" ? -1 : 1));
+      results.sort((a,b) => {
+        const w = x => x.kind === "title/summary" ? 0 : 1;
+        return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
+      });
+
       renderNavList(results, route, q);
     }
 
@@ -737,7 +728,10 @@
       renderNavDefault();
       navSearch.addEventListener("input", () => renderNavSearch(navSearch.value));
 
-      window.addEventListener("hashchange", () => { render(); setActive(getRoute()); });
+      window.addEventListener("hashchange", () => {
+        render();
+        setActive(getRoute());
+      });
 
       render();
       closeDrawer();

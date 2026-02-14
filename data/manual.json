@@ -1,1 +1,86 @@
 
+{
+  "model": "GSX250RL",
+  "source": {
+    "document": "GIXXER-250FSF.pdf",
+    "publisher": "Suzuki",
+    "region": "Philippines"
+  },
+  "categories": [
+    { "id": "home", "title": "Home" },
+    { "id": "fluids", "title": "Fluids & Capacities" },
+    { "id": "tyres", "title": "Tyres & Brakes" },
+    { "id": "body", "title": "Body & Covers" }
+  ],
+  "topics": [
+    {
+      "id": "home",
+      "title": "Welcome",
+      "category": "home",
+      "summary": "Pick a topic on the left.",
+      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "sections": [
+        {
+          "heading": "How this works",
+          "bullets": [
+            "Navigation and content are generated from JSON.",
+            "URL is hash-routed (#/topic-id) for shareable deep links.",
+            "We’ll fill in specs and procedures topic-by-topic."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engine-oil",
+      "title": "Engine Oil",
+      "category": "fluids",
+      "summary": "Oil type, standards, capacity, and basic steps.",
+      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "data": [
+        { "label": "Oil type", "value": "TBD (from PDF)" },
+        { "label": "Standard", "value": "TBD (from PDF)" },
+        { "label": "Capacity", "value": "TBD (from PDF)" }
+      ],
+      "sections": [
+        {
+          "heading": "Procedure",
+          "bullets": ["TBD", "TBD", "TBD"]
+        },
+        {
+          "heading": "Notes",
+          "bullets": ["TBD"]
+        }
+      ],
+      "source_pages": []
+    },
+    {
+      "id": "tyre-pressure",
+      "title": "Tyre Pressure",
+      "category": "tyres",
+      "summary": "Front/rear pressures and load notes.",
+      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "data": [
+        { "label": "Front", "value": "TBD (from PDF)" },
+        { "label": "Rear", "value": "TBD (from PDF)" }
+      ],
+      "sections": [
+        {
+          "heading": "Notes",
+          "bullets": ["Check when tyres are cold.", "TBD"]
+        }
+      ],
+      "source_pages": []
+    },
+    {
+      "id": "frame-cover",
+      "title": "Frame Cover",
+      "category": "body",
+      "summary": "How to open/remove the frame cover.",
+      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "sections": [
+        { "heading": "Steps", "bullets": ["TBD", "TBD", "TBD"] }
+      ],
+      "source_pages": []
+    }
+  ]
+}

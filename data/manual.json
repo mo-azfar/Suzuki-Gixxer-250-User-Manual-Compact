@@ -1,81 +1,226 @@
-
 {
-  "model": "Suzuki Gixxer 250",
-  "categories": [
-    { "id": "home", "title": "Home" },
-    { "id": "fluids", "title": "Fluids & Capacities" },
-    { "id": "tyres", "title": "Tyres & Brakes" },
-    { "id": "body", "title": "Body & Covers" }
-  ],
-  "topics": [
-    {
-      "id": "home",
-      "title": "Welcome",
-      "category": "home",
-      "summary": "Pick a topic on the left.",
-      "applicable_models": ["Gixxer 250 (Naked)"],
-      "sections": [
-        {
-          "heading": "How this works",
-          "bullets": [
-            "Navigation and content are generated from JSON.",
-            "URL is hash-routed (#/topic-id) for shareable deep links.",
-            "We’ll fill in specs and procedures topic-by-topic."
-          ]
-        }
-      ]
+    "model": "Suzuki Gixxer 250",
+    "images": {
+        "img1": "data/frame-number.png",
+        "img2": "data/engine-number.png"
     },
-    {
-      "id": "engine-oil",
-      "title": "Engine Oil",
-      "category": "fluids",
-      "summary": "Oil type, standards, capacity, and basic steps.",
-      "applicable_models": ["Gixxer 250 (Naked)"],
-      "data": [
-        { "label": "Oil type", "value": "TBD (from PDF)" },
-        { "label": "Standard", "value": "TBD (from PDF)" },
-        { "label": "Capacity", "value": "TBD (from PDF)" }
-      ],
-      "sections": [
+    "topics": [
         {
-          "heading": "Procedure",
-          "bullets": ["TBD", "TBD", "TBD"]
+            "id": "home",
+            "title": "Home",
+            "summary": "Suzuki Gixxer 250 Specifications",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                },
+                {
+                    "type": "data"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Note & Disclaimer",
+                    "open": false,
+                    "bullets": [
+                        "Use the hamburger menu to navigate to specific topics.",
+                        "This is a compact reference. Always verify critical steps in the OEM manual."
+                    ]
+                }
+            ],
+            "data": [
+                {
+                    "label": "Type",
+                    "value": "4-Cycle, 1-cylinder, Oil cooled"
+                },
+                {
+                    "label": "Valve System",
+                    "value": "SOHC"
+                },
+                {
+                    "label": "Displacement",
+                    "value": "249cm3"
+                },
+                {
+                    "label": "Bore x Stroke",
+                    "value": "76mm x 54.9mm"
+                },
+                {
+                    "label": "Engine Output",
+                    "value": "26.5ps@9300rpm"
+                },
+                {
+                    "label": "Torque",
+                    "value": "22.2Nm@7300rpm"
+                },
+                {
+                    "label": "Fuel System",
+                    "value": "Fuel Injection"
+                },
+                {
+                    "label": "Starter System",
+                    "value": "Electric"
+                },
+                {
+                    "label": "Transmission",
+                    "value": "6 Speed, MT"
+                },
+                {
+                    "label": "Fuel Tank Capacity",
+                    "value": "12.0 L"
+                },
+                {
+                    "label": "Curb mass",
+                    "value": "156kg"
+                }
+            ]
         },
         {
-          "heading": "Notes",
-          "bullets": ["TBD"]
-        }
-      ],
-      "source_pages": []
-    },
-    {
-      "id": "tyre-pressure",
-      "title": "Tyre Pressure",
-      "category": "tyres",
-      "summary": "Front/rear pressures and load notes.",
-      "applicable_models": ["Gixxer 250 (Naked)"],
-      "data": [
-        { "label": "Front", "value": "TBD (from PDF)" },
-        { "label": "Rear", "value": "TBD (from PDF)" }
-      ],
-      "sections": [
+            "id": "serial-number-location",
+            "title": "Serial Number Location",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Frame / Chassis Number",
+                    "bullets": [
+                        "Stamped on the steering head tube on right hand side. [IMG#img1]"
+                    ]
+                },
+                {
+                    "heading": "Engine Number",
+                    "bullets": [
+                        "Stamped on the crankcase on the left hand side. [IMG#img2]"
+                    ]
+                }
+            ]
+        },
         {
-          "heading": "Notes",
-          "bullets": ["Check when tyres are cold.", "TBD"]
+            "id": "engine-oil",
+            "title": "Engine Oil",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "data"
+                }
+            ],
+            "data": [
+                {
+                    "label": "SAE",
+                    "value": "10W-40"
+                },
+                {
+                    "label": "API",
+                    "value": "SG, SH, SJ, SL, SM or SN"
+                },
+                {
+                    "label": "JASO",
+                    "value": "MA"
+                },
+                {
+                    "label": "Capacity",
+                    "value": "1.2 L"
+                },
+                {
+                    "label": "",
+                    "value": "Energy Conserving or Resource Conserving are NOT recommended."
+                }
+            ]
+        },
+        {
+            "id": "tyre",
+            "title": "Tyre",
+            "summary": "Front/Rear tyre",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "data"
+                },
+                {
+                    "type": "sections"
+                }
+            ],
+            "data": [
+                {
+                    "label": "Front Size",
+                    "value": "110/70R17M/C 54S"
+                },
+                {
+                    "label": "Front Inflation Pressure (Cold)",
+                    "value": "29 psi (200 kPa)"
+                },
+                {
+                    "label": "Rear Size",
+                    "value": "150/60R17M/C 66S"
+                },
+                {
+                    "label": "Rear Inflation Pressure (Cold)",
+                    "value": "33 psi (225 kPa)"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Notes",
+                    "bullets": [
+                        "Check when tyres are cold.",
+                        "TBD"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "topic-id",
+            "title": "Topic Title",
+            "summary": "This is template content for a topic. Replace with actual content.",
+            "applicable_models": [
+                "Model Name"
+            ],
+            "disabled": true,
+            "blocks": [
+                {
+                    "type": "data"
+                },
+                {
+                    "type": "sections"
+                }
+            ],
+            "data": [
+                {
+                    "label": "Label",
+                    "value": "Value"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Section Heading",
+                    "open": false,
+                    "bullets": [
+                        "Bullet point 1",
+                        "Bullet point 2"
+                    ]
+                },
+                {
+                    "heading": "Another Section",
+                    "open": true,
+                    "bullets": [
+                        "Another bullet point"
+                    ]
+                }
+            ]
         }
-      ],
-      "source_pages": []
-    },
-    {
-      "id": "frame-cover",
-      "title": "Frame Cover",
-      "category": "body",
-      "summary": "How to open/remove the frame cover.",
-      "applicable_models": ["Gixxer 250 (Naked)"],
-      "sections": [
-        { "heading": "Steps", "bullets": ["TBD", "TBD", "TBD"] }
-      ],
-      "source_pages": []
-    }
-  ]
+    ]
 }

@@ -1,312 +1,814 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Suzuki Gixxer 250 User Manual (Compact)</title>
-  <style>
-    :root{
-      --bg:#0b0d10; --panel:#12161c; --panel2:#0f1318; --text:#e7eef7; --muted:#9fb0c3;
-      --border:#233041; --accent:#5aa9ff;
-      --phoneW:390px; --phoneH:844px; --navW:140px;
-      --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.45);
-    }
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      background: radial-gradient(1200px 800px at 30% 10%, #101827 0%, var(--bg) 55%, #07080a 100%);
-      color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      display:flex; align-items:center; justify-content:center; padding:16px;
-    }
-    .phone{
-      width:min(100%, var(--phoneW));
-      height:min(100vh - 32px, var(--phoneH));
-      background: var(--panel2);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex; flex-direction:column;
-    }
-    .topbar{
-      height:52px;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .brand{ display:flex; flex-direction:column; line-height:1.05; }
-    .brand b{ font-size:14px; letter-spacing:.2px; }
-    .brand span{ font-size:12px; color:var(--muted); }
-    .layout{ flex:1; display:flex; min-height:0; }
-    nav{
-      width:var(--navW);
-      background: rgba(255,255,255,.03);
-      border-right:1px solid rgba(255,255,255,.06);
-      padding:12px 10px;
-      overflow:auto;
-    }
-    .nav-group-title{
-      margin:12px 0 8px;
-      font-size:11px;
-      color:var(--muted);
-      font-weight:600;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-    }
-    .nav-item{
-      display:block;
-      padding:10px 10px;
-      border-radius:12px;
-      color:var(--text);
-      text-decoration:none;
-      font-size:13px;
-      border:1px solid transparent;
-      margin-bottom:8px;
-      background: rgba(255,255,255,.02);
-    }
-    .nav-item:hover{
-      border-color: rgba(90,169,255,.35);
-      background: rgba(90,169,255,.10);
-    }
-    .nav-item.active{
-      border-color: rgba(90,169,255,.55);
-      background: rgba(90,169,255,.18);
-    }
-    .nav-item small{
-      display:block;
-      color:var(--muted);
-      font-size:11px;
-      margin-top:4px;
-    }
-    main{ flex:1; padding:14px; overflow:auto; }
-    .card{
-      background: rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:14px;
-      margin-bottom:12px;
-    }
-    .title{ font-size:16px; margin:0 0 8px; letter-spacing:.2px; }
-    .meta{ margin:0 0 10px; color:var(--muted); font-size:12px; }
-    .chip{
-      display:inline-flex; align-items:center;
-      padding:4px 8px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:11px;
-      margin-right:6px;
-      margin-bottom:6px;
-    }
-    .kv{ display:grid; gap:8px; margin-top:10px; }
-    .kv-row{
-      display:flex; justify-content:space-between; gap:10px;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.06);
-      background: rgba(255,255,255,.02);
-      font-size:13px;
-    }
-    .kv-row span:first-child{ color:var(--muted); }
-    ul{ margin:8px 0 0 18px; }
-    li{ margin:6px 0; }
-    .muted{ color:var(--muted); }
-    .search{
-      width: 150px;
-      border-radius: 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding:8px 10px;
-      font-size:12px;
-      outline:none;
-    }
-    .search::placeholder{ color: rgba(159,176,195,.75); }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Suzuki Gixxer 250 User Manual (Compact)</title>
+
+    <style>
+        :root {
+            --bg: #0b0d10;
+            --panel2: #0f1318;
+            --text: #e7eef7;
+            --muted: #9fb0c3;
+            --accent: #5aa9ff;
+            --phoneW: 390px;
+            --phoneH: 844px;
+            --radius: 18px;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            --drawerW: 270px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 800px at 30% 10%,
+                    #101827 0%,
+                    var(--bg) 55%,
+                    #07080a 100%);
+            color: var(--text);
+            font-family:
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                Segoe UI,
+                Roboto,
+                Helvetica,
+                Arial;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .phone {
+            width: min(100%, var(--phoneW));
+            height: min(100vh - 32px, var(--phoneH));
+            background: var(--panel2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .topbar {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 10px;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.06),
+                    rgba(255, 255, 255, 0));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn-icon:hover {
+            border-color: rgba(90, 169, 255, 0.35);
+            background: rgba(90, 169, 255, 0.1);
+        }
+
+        .btn-icon:active {
+            transform: translateY(1px);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.05;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .brand b {
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brand span {
+            font-size: 12px;
+            color: var(--muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        main {
+            flex: 1;
+            padding: 14px;
+            overflow: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .title {
+            font-size: 16px;
+            margin: 0 0 8px;
+            letter-spacing: 0.2px;
+        }
+
+        .meta {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--muted);
+            font-size: 11px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .kv {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .kv-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 13px;
+        }
+
+        .kv-row span:first-child {
+            color: var(--muted);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        ul {
+            margin-top: 5px;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        /* Content accordion */
+        .accordion details {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            user-select: none;
+        }
+
+        .accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .accordion .sum-title {
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        .accordion .chev {
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid rgba(159, 176, 195, 0.9);
+            border-bottom: 2px solid rgba(159, 176, 195, 0.9);
+            transform: rotate(-45deg);
+            transition: transform 0.15s ease;
+            flex: 0 0 auto;
+            margin-left: 6px;
+        }
+
+        .accordion details[open] .chev {
+            transform: rotate(45deg);
+        }
+
+        .accordion .acc-body {
+            padding: 0 12px 12px;
+            color: var(--text);
+        }
+
+        /* Drawer */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--drawerW);
+            background: rgba(18, 22, 28, 0.98);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            transform: translateX(-102%);
+            transition: transform 0.18s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 10px;
+        }
+
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 4px 2px 10px;
+        }
+
+        .drawer-title {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .drawer-search {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            padding: 8px 10px;
+            font-size: 12px;
+            outline: none;
+            margin: 2px 0 10px;
+        }
+
+        .drawer-search::placeholder {
+            color: rgba(159, 176, 195, 0.75);
+        }
+
+        .drawer-list {
+            overflow: auto;
+            padding-right: 2px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 10px;
+            border-radius: 12px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            border: 1px solid transparent;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .nav-item:hover {
+            border-color: rgba(90, 169, 255, 0.35);
+            background: rgba(90, 169, 255, 0.1);
+        }
+
+        .nav-item.active {
+            border-color: rgba(90, 169, 255, 0.55);
+            background: rgba(90, 169, 255, 0.18);
+        }
+
+        .nav-item small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* Search result styling */
+        .result-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 6px;
+            border-radius: 999px;
+            margin-top: 6px;
+        }
+
+        mark {
+            background: rgba(90, 169, 255, 0.22);
+            color: var(--text);
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="phone" role="application" aria-label="GSX250RL Micro Manual">
-    <header class="topbar">
-      <div class="brand">
-        <b id="appTitle">Compact Manual</b>
-        <span id="appSubtitle">Loading data…</span>
-      </div>
-      <input id="search" class="search" type="search" placeholder="Search…" />
-    </header>
+    <div class="phone" role="application" aria-label="Suzuki Gixxer 250 Compact Manual">
+        <header class="topbar">
+            <button id="menuBtn" class="btn-icon" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
 
-    <div class="layout">
-      <nav id="nav" aria-label="Topics"></nav>
-      <main id="content" aria-live="polite"></main>
+            <div class="brand">
+                <b id="appTitle">Compact Manual</b>
+                <span id="appSubtitle">Home</span>
+            </div>
+        </header>
+
+        <main id="content" aria-live="polite"></main>
+
+        <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+        <aside id="drawer" class="drawer" aria-label="Navigation menu">
+            <div class="drawer-header">
+                <div class="drawer-title">Topics</div>
+                <button id="closeBtn" class="btn-icon" aria-label="Close menu">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <input id="navSearch" class="drawer-search" type="search" placeholder="Search topics & content…" />
+            <div id="nav" class="drawer-list"></div>
+        </aside>
     </div>
-  </div>
 
-  <script>
-    const DATA_URL = "data/manual.json";
+    <script>
+        const DATA_URL = "data/manual.json";
 
-    let manual = null;
-    let topicsById = new Map();
+        let manual = null;
+        let topicsById = new Map();
+        let orderedTopics = [];
 
-    function esc(s){
-      return String(s ?? "")
-        .replaceAll("&","&amp;").replaceAll("<","&lt;")
-        .replaceAll(">","&gt;").replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
+        const drawer = document.getElementById("drawer");
+        const overlay = document.getElementById("overlay");
+        const menuBtn = document.getElementById("menuBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        const nav = document.getElementById("nav");
+        const subtitle = document.getElementById("appSubtitle");
+        const navSearch = document.getElementById("navSearch");
 
-    function getRoute(){
-      const hash = location.hash || "#/home";
-      const route = hash.replace(/^#\//, "");
-      return route || "home";
-    }
+        function esc(s) {
+            return String(s ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
 
-    function setActive(route){
-      document.querySelectorAll(".nav-item").forEach(a => {
-        a.classList.toggle("active", a.dataset.route === route);
-      });
-    }
+        function getRoute() {
+            const hash = location.hash || "#/home";
+            const route = hash.replace(/^#\//, "");
+            return route || "home";
+        }
 
-    function renderTopic(topic){
-      if(!topic){
-        return `
+        function openDrawer() {
+            drawer.classList.add("open");
+            overlay.classList.add("show");
+            menuBtn.setAttribute("aria-expanded", "true");
+            // focus search for quick jump
+            setTimeout(() => navSearch.focus(), 0);
+        }
+        function closeDrawer() {
+            drawer.classList.remove("open");
+            overlay.classList.remove("show");
+            menuBtn.setAttribute("aria-expanded", "false");
+        }
+        function toggleDrawer() {
+            drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+        }
+
+        overlay.addEventListener("click", closeDrawer);
+        menuBtn.addEventListener("click", toggleDrawer);
+        closeBtn.addEventListener("click", closeDrawer);
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeDrawer();
+        });
+
+        function setActive(route) {
+            document.querySelectorAll(".nav-item").forEach((a) => {
+                a.classList.toggle("active", a.dataset.route === route);
+            });
+        }
+
+        // ----- Block rendering order (robust) -----
+        // If topic.blocks exists, we follow it.
+        // Otherwise default to: sections then data.
+        function getRenderPlan(topic) {
+            const hasSections =
+                Array.isArray(topic.sections) && topic.sections.length > 0;
+            const hasData = Array.isArray(topic.data) && topic.data.length > 0;
+
+            if (Array.isArray(topic.blocks) && topic.blocks.length) {
+                // Only keep supported blocks that exist
+                const plan = topic.blocks
+                    .map((b) => b?.type)
+                    .filter(
+                        (t) =>
+                            (t === "sections" && hasSections) || (t === "data" && hasData),
+                    );
+                // If blocks omits something, append it at end
+                if (hasSections && !plan.includes("sections")) plan.push("sections");
+                if (hasData && !plan.includes("data")) plan.push("data");
+                return plan;
+            }
+
+            // Backward compatible default
+            const plan = [];
+            if (hasSections) plan.push("sections");
+            if (hasData) plan.push("data");
+            return plan;
+        }
+
+        function renderSectionsBlock(topic) {
+            if (!topic.sections?.length) return "";
+            return `
+        <section class="card accordion" data-accordion>
+          ${topic.sections
+                    .map(
+                        (sec) => `
+            <details ${sec.open === false ? "" : "open"} data-acc-item>
+              <summary>
+                <span class="sum-title">${esc(sec.heading)}</span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="acc-body">
+                ${sec.text ? `<p class="muted">${esc(sec.text)}</p>` : ""}
+                ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>` : ""}
+              </div>
+            </details>
+          `,
+                    )
+                    .join("")}
+        </section>
+      `;
+        }
+
+        function renderDataBlock(topic) {
+            if (!topic.data?.length) return "";
+            return `
+        <section class="card">
+          <div class="kv">
+            ${topic.data
+                    .map(
+                        (kv) => `
+              <div class="kv-row">
+                <span>${esc(kv.label)}</span>
+                <span>${esc(kv.value)}</span>
+              </div>
+            `,
+                    )
+                    .join("")}
+          </div>
+        </section>
+      `;
+        }
+
+        function renderTopic(topic) {
+            if (!topic) {
+                subtitle.textContent = "Not found";
+                return `
           <section class="card">
             <h1 class="title">Not found</h1>
             <p class="muted">This topic doesn’t exist.</p>
           </section>
         `;
-      }
+            }
 
-      const chips = [
-        topic.category ? `<span class="chip">${esc(topic.category)}</span>` : "",
-        (topic.applicable_models?.length ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>` : ""),
-        (topic.source_pages?.length ? `<span class="chip">Source pages: ${esc(topic.source_pages.join(", "))}</span>` : "")
-      ].filter(Boolean).join("");
+            subtitle.textContent = topic.title || topic.id;
 
-      const kv = (topic.data?.length)
-        ? `
-          <section class="card">
-            <h2 class="title">Key values</h2>
-            <div class="kv">
-              ${topic.data.map(kv => `
-                <div class="kv-row">
-                  <span>${esc(kv.label)}</span>
-                  <span>${esc(kv.value)}</span>
-                </div>
-              `).join("")}
-            </div>
-          </section>
-        `
-        : "";
+            const chips = [
+                topic.applicable_models?.length
+                    ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>`
+                    : "",
+            ]
+                .filter(Boolean)
+                .join("");
 
-      const sections = (topic.sections?.length)
-        ? topic.sections.map(sec => `
-            <section class="card">
-              <h2 class="title">${esc(sec.heading)}</h2>
-              ${sec.text ? `<p class="muted">${esc(sec.text)}</p>` : ""}
-              ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}
-            </section>
-          `).join("")
-        : "";
-
-      return `
+            const header = `
         <section class="card">
           <h1 class="title">${esc(topic.title)}</h1>
           <p class="meta">${chips}</p>
           ${topic.summary ? `<p class="muted">${esc(topic.summary)}</p>` : ""}
         </section>
-        ${kv}
-        ${sections}
       `;
-    }
 
-    function groupTopics(topics){
-      // group by category id, preserving the order in manual.categories
-      const groups = new Map();
-      for(const cat of manual.categories){
-        groups.set(cat.id, []);
-      }
-      for(const t of topics){
-        const key = t.category || "uncategorized";
-        if(!groups.has(key)) groups.set(key, []);
-        groups.get(key).push(t);
-      }
-      return groups;
-    }
+            const plan = getRenderPlan(topic);
+            const blocksHtml = plan
+                .map((t) => {
+                    if (t === "sections") return renderSectionsBlock(topic);
+                    if (t === "data") return renderDataBlock(topic);
+                    return "";
+                })
+                .join("");
 
-    function renderNav(filterText=""){
-      const nav = document.getElementById("nav");
-      const q = filterText.trim().toLowerCase();
+            return header + blocksHtml;
+        }
 
-      const filtered = manual.topics.filter(t => {
-        if(!q) return true;
-        return (
-          (t.title || "").toLowerCase().includes(q) ||
-          (t.summary || "").toLowerCase().includes(q) ||
-          (t.id || "").toLowerCase().includes(q)
-        );
-      });
+        // Content accordion: single-open inside content area
+        function wireContentAccordions() {
+            document.querySelectorAll("[data-accordion]").forEach((acc) => {
+                const items = Array.from(
+                    acc.querySelectorAll("details[data-acc-item]"),
+                );
+                items.forEach((d) => {
+                    d.addEventListener("toggle", () => {
+                        if (!d.open) return;
+                        items.forEach((other) => {
+                            if (other !== d) other.open = false;
+                        });
+                    });
+                });
+            });
+        }
 
-      const groups = groupTopics(filtered);
-      const categoryTitleById = new Map(manual.categories.map(c => [c.id, c.title]));
+        function render() {
+            const route = getRoute();
+            const topic = topicsById.get(route);
+            document.getElementById("content").innerHTML = renderTopic(topic);
+            setActive(route);
+            wireContentAccordions();
+        }
 
-      let html = "";
-      for(const [catId, items] of groups.entries()){
-        if(!items.length) continue;
-        html += `<div class="nav-group-title">${esc(categoryTitleById.get(catId) || catId)}</div>`;
-        html += items.map(t => `
+        function imgPathByToken(token){
+            const key = String(token || "").trim();
+            return manual?.images?.[key] || "";
+        }
+
+        function renderInlineImagesFromText(raw){
+            // Returns HTML (escaped text + <img> tags) from strings containing [IMG#KEY]
+            const s = String(raw ?? "");
+            const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
+
+            let out = "";
+            let last = 0;
+            let m;
+
+            while((m = re.exec(s)) !== null){
+                const before = s.slice(last, m.index);
+                out += esc(before);
+
+                const key = m[1];
+                const src = imgPathByToken(key);
+
+                if(src){
+                out += `
+                    <div style="margin:10px 0;">
+                    <img
+                        src="${esc(src)}"
+                        alt="Image ${esc(key)}"
+                        loading="lazy"
+                        style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02);"
+                    />
+                    </div>
+                `;
+                } else {
+                // If mapping missing, keep a visible placeholder
+                out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
+                }
+
+                last = m.index + m[0].length;
+            }
+
+            out += esc(s.slice(last));
+            return out;
+        }
+
+
+
+        // ----- Search (short result + jump) -----
+        function stripHtml(s) {
+            return String(s ?? "").replace(/<[^>]*>/g, "");
+        }
+
+        function topicSearchText(topic) {
+            const parts = [];
+            parts.push(topic.title, topic.summary);
+
+            if (Array.isArray(topic.data)) {
+                for (const kv of topic.data) {
+                    parts.push(kv.label, kv.value);
+                }
+            }
+            if (Array.isArray(topic.sections)) {
+                for (const sec of topic.sections) {
+                    parts.push(sec.heading);
+                    if (Array.isArray(sec.bullets)) parts.push(...sec.bullets);
+                    if (sec.text) parts.push(sec.text);
+                }
+            }
+            return parts.filter(Boolean).join(" \n ");
+        }
+
+        function makeSnippet(text, q) {
+            const lower = text.toLowerCase();
+            const idx = lower.indexOf(q);
+            if (idx === -1) return "";
+            const start = Math.max(0, idx - 35);
+            const end = Math.min(text.length, idx + q.length + 45);
+            let snip = text.slice(start, end).trim();
+            if (start > 0) snip = "…" + snip;
+            if (end < text.length) snip = snip + "…";
+            return snip;
+        }
+
+        function highlightSnippet(snip, q) {
+            const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
+            return esc(snip).replace(re, (m) => `<mark>${esc(m)}</mark>`);
+        }
+
+        function renderNavList(items, route, qStr = "") {
+            nav.innerHTML =
+                items
+                    .map((item) => {
+                        const t = item.topic;
+                        const hint = item.hint || t.summary || "";
+                        const pill = item.kind
+                            ? `<span class="result-pill">${esc(item.kind)}</span>`
+                            : "";
+                        const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
+
+                        return `
           <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
             ${esc(t.title)}
-            ${t.summary ? `<small>${esc(t.summary)}</small>` : `<small>${esc(t.id)}</small>`}
+            <small>${small}</small>
+            ${pill}
           </a>
-        `).join("");
-      }
+        `;
+                    })
+                    .join("") ||
+                `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
 
-      nav.innerHTML = html || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
-      setActive(getRoute());
-    }
+            setActive(route);
 
-    function render(){
-      const route = getRoute();
-      const topic = topicsById.get(route);
-      document.getElementById("content").innerHTML = renderTopic(topic);
-      setActive(route);
-    }
+            // Auto-close drawer after choosing a topic
+            nav.querySelectorAll("a.nav-item").forEach((a) => {
+                a.addEventListener("click", () => closeDrawer());
+            });
+        }
 
-    async function init(){
-      const res = await fetch(DATA_URL, { cache: "no-store" });
-      if(!res.ok) throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
-      manual = await res.json();
+        function renderNavDefault() {
+            const route = getRoute();
+            const items = orderedTopics.map((t) => ({
+                topic: t,
+                hint: t.summary || "",
+                kind: "",
+            }));
+            renderNavList(items, route, "");
+        }
 
-      topicsById = new Map((manual.topics || []).map(t => [t.id, t]));
+        function renderNavSearch(qRaw) {
+            const route = getRoute();
+            const q = qRaw.trim().toLowerCase();
+            if (!q) {
+                renderNavDefault();
+                return;
+            }
 
-      document.getElementById("appTitle").textContent = `${manual.model}`;
+            const results = [];
+            for (const t of orderedTopics) {
+                const hay = topicSearchText(t);
+                const lower = hay.toLowerCase();
+                if (!lower.includes(q)) continue;
 
-      // Build nav + initial render
-      renderNav("");
+                // Prefer snippet from: title/summary first, else from body
+                let hint = "";
+                let kind = "match";
 
-      // Search
-      const search = document.getElementById("search");
-      search.addEventListener("input", () => renderNav(search.value));
+                const titleSummary = [t.title, t.summary].filter(Boolean).join(" — ");
+                if (titleSummary.toLowerCase().includes(q)) {
+                    hint = titleSummary;
+                    kind = "title/summary";
+                } else {
+                    const snip = makeSnippet(hay, q);
+                    hint = snip || t.summary || "";
+                    kind = "content";
+                }
 
-      // Route changes
-      window.addEventListener("hashchange", render);
+                results.push({ topic: t, hint, kind });
+            }
 
-      // Default route if missing
-      if(!topicsById.has(getRoute())) location.hash = "#/home";
-      render();
-    }
+            // Basic ranking: title/summary matches first, then content
+            results.sort((a, b) => {
+                const w = (x) => (x.kind === "title/summary" ? 0 : 1);
+                return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
+            });
 
-    init().catch(err => {
-      document.getElementById("content").innerHTML = `
+            renderNavList(results, route, q);
+        }
+
+        async function init() {
+            const res = await fetch(DATA_URL, { cache: "no-store" });
+            if (!res.ok)
+                throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
+            manual = await res.json();
+
+            orderedTopics = (manual.topics || []).filter(t => t && t.disabled !== true);
+            topicsById = new Map(orderedTopics.map(t => [t.id, t]));
+
+            document.getElementById("appTitle").textContent = `${manual.model}`;
+
+            // Default route
+            if (!topicsById.has(getRoute())) location.hash = "#/home";
+            if (!location.hash) location.hash = "#/home";
+
+            // Drawer list (default)
+            renderNavDefault();
+
+            // Search in drawer
+            navSearch.addEventListener("input", () =>
+                renderNavSearch(navSearch.value),
+            );
+
+            // Route changes
+            window.addEventListener("hashchange", () => {
+                render();
+                setActive(getRoute());
+            });
+
+            // Initial render (Home) + keep drawer collapsed
+            render();
+            closeDrawer();
+        }
+
+        init().catch((err) => {
+            document.getElementById("content").innerHTML = `
         <section class="card">
           <h1 class="title">Error</h1>
           <p class="muted">${esc(err.message)}</p>
           <p class="muted">Make sure <code>data/manual.json</code> exists and GitHub Pages is serving it.</p>
         </section>
       `;
-    });
-  </script>
+        });
+    </script>
 </body>
+
 </html>

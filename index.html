@@ -9,10 +9,8 @@
     :root{
       --bg:#0b0d10;
       --panel:#0f1318;
-      --panel2:#121822;
       --text:#e7eef7;
       --muted:#9fb0c3;
-      --accent:#5aa9ff;
 
       --radius:18px;
       --shadow:0 18px 60px rgba(0,0,0,.50);
@@ -22,6 +20,7 @@
 
     *{ box-sizing:border-box; }
     html, body { height:100%; }
+
     body{
       margin:0;
       background: radial-gradient(1200px 800px at 30% 10%, #101827 0%, var(--bg) 55%, #07080a 100%);
@@ -29,7 +28,6 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
-    /* App container: desktop = 90% width, centered; mobile = full screen */
     .app{
       width: min(90vw, var(--maxAppW));
       height: min(92vh, 920px);
@@ -57,7 +55,6 @@
       :root{ --drawerW: 88vw; }
     }
 
-    /* Topbar */
     .topbar{
       position: sticky;
       top: 0;
@@ -116,7 +113,6 @@
       text-overflow:ellipsis;
     }
 
-    /* Main content */
     main{
       flex:1;
       overflow:auto;
@@ -159,7 +155,6 @@
     ul{ margin: 6px 0 0; padding-left: 18px; }
     li{ margin: 6px 0; }
 
-    /* Content accordion */
     .accordion details{
       border:1px solid rgba(255,255,255,.06);
       background: rgba(255,255,255,.02);
@@ -191,7 +186,6 @@
     .accordion details[open] .chev{ transform: rotate(45deg); }
     .accordion .acc-body{ padding:0 12px 12px; }
 
-    /* Drawer + overlay */
     .overlay{
       position:absolute;
       inset:0;
@@ -284,6 +278,7 @@
       border-radius:999px;
       margin-top:6px;
     }
+
     mark{
       background: rgba(90,169,255,.22);
       color: var(--text);
@@ -291,7 +286,29 @@
       border-radius: 4px;
     }
 
-    /* Lightbox */
+    .imgref{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-left:6px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid rgba(90,169,255,.45);
+      background: rgba(90,169,255,.12);
+      color: var(--text);
+      cursor:pointer;
+      font-size:12px;
+      line-height:1;
+      vertical-align: middle;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .imgref:hover{
+      border-color: rgba(90,169,255,.75);
+      background: rgba(90,169,255,.18);
+    }
+    .imgref svg{ opacity:.95; flex:0 0 auto; }
+    .imgref .imgref-label{ color: rgba(231,238,247,.92); font-size:11px; }
+
     .lightbox-overlay{
       position:absolute;
       inset:0;
@@ -303,6 +320,7 @@
       z-index: 90;
     }
     .lightbox-overlay.show{ display:flex; }
+
     .lightbox-panel{
       position:relative;
       max-width: 80vw;
@@ -311,6 +329,7 @@
       align-items:center;
       justify-content:center;
     }
+
     .lightbox-img{
       max-width: 80vw;
       max-height: 80vh;
@@ -320,6 +339,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
     }
+
     .lightbox-close{
       position:absolute;
       top:-10px;
@@ -335,6 +355,7 @@
       align-items:center;
       justify-content:center;
     }
+
     .lightbox-close:hover{
       border-color: rgba(90,169,255,.35);
       background: rgba(90,169,255,.10);
@@ -375,7 +396,6 @@
       <div id="nav" class="drawer-list"></div>
     </aside>
 
-    <!-- Lightbox -->
     <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
       <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image viewer">
         <button id="lightboxClose" class="lightbox-close" aria-label="Close image">
@@ -433,12 +453,9 @@
       overlay.classList.remove("show");
       menuBtn.setAttribute("aria-expanded", "false");
     }
-    function toggleDrawer(){
-      drawer.classList.contains("open") ? closeDrawer() : openDrawer();
-    }
 
     overlay.addEventListener("click", closeDrawer);
-    menuBtn.addEventListener("click", toggleDrawer);
+    menuBtn.addEventListener("click", openDrawer);
     closeBtn.addEventListener("click", closeDrawer);
 
     function openLightbox(src, alt=""){
@@ -510,16 +527,21 @@
 
         if(src){
           out += `
-            <div style="margin:10px 0;">
-              <img
-                src="${esc(src)}"
-                alt="Image ${esc(key)}"
-                loading="lazy"
-                class="inline-img"
-                data-fullsrc="${esc(src)}"
-                style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); cursor: zoom-in;"
-              />
-            </div>
+            <button
+              type="button"
+              class="imgref"
+              data-imgkey="${esc(key)}"
+              data-imgsrc="${esc(src)}"
+              aria-label="Open image ${esc(key)}"
+              title="Open image"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" stroke="currentColor" stroke-width="2" />
+                <path d="M8 14l2-2 3 3 3-4 3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.5 9.5h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <span class="imgref-label">Image</span>
+            </button>
           `;
         } else {
           out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
@@ -533,8 +555,17 @@
     }
 
     function wireInlineImageLightbox(){
-      document.querySelectorAll("img.inline-img[data-fullsrc]").forEach(img => {
-        img.addEventListener("click", () => openLightbox(img.dataset.fullsrc, img.alt || ""));
+      const root = document.getElementById("content");
+      if(root.dataset.imgrefBound === "1") return;
+      root.dataset.imgrefBound = "1";
+
+      root.addEventListener("click", (e) => {
+        const btn = e.target.closest("button.imgref");
+        if(!btn) return;
+
+        const src = btn.dataset.imgsrc;
+        const key = btn.dataset.imgkey || "";
+        if(src) openLightbox(src, `Image ${key}`);
       });
     }
 

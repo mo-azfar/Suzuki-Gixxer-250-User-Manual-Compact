@@ -2,7 +2,13 @@
     "model": "Suzuki Gixxer 250",
     "images": {
         "img1": "data/frame-number.png",
-        "img2": "data/engine-number.png"
+        "img2": "data/engine-number.png",
+        "img3": "data/front-light-beam.png",
+        "img4": "data/seatlock.png",
+        "img5": "data/front-seat-removal.png",
+        "img6": "data/left-frame-cover-removal-1.png",
+        "img7": "data/left-frame-cover-removal-2.png",
+        "img8": "data/right-frame-cover-removal-1.png"
     },
     "topics": [
         {
@@ -134,15 +140,15 @@
                     "value": "1.2 L"
                 },
                 {
-                    "label": "",
-                    "value": "Energy Conserving or Resource Conserving are NOT recommended."
+                    "label": "[icon:warning] Important Note",
+                    "value": "*Energy Conserving* or *Resource Conserving* are **NOT RECOMMENDED**."
                 }
             ]
         },
         {
             "id": "tyre",
             "title": "Tyre",
-            "summary": "Front/Rear tyre",
+            "summary": "Front / Rear tyre",
             "applicable_models": [
                 "Gixxer 250"
             ],
@@ -171,13 +177,90 @@
                     "label": "Rear Inflation Pressure (Cold)",
                     "value": "33 psi (225 kPa)"
                 }
+            ]
+        },
+        {
+            "id": "battery-sparkplug-brakefluid-turnsignal",
+            "title": "Battery, Spark Plug, Brake Fluid, Turn Signal Bulb",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "data"
+                }
+            ],
+            "data": [
+                {
+                    "label": "Battery Model",
+                    "value": "YTZ7V / KTZ7V"
+                },
+                {
+                    "label": "Spark Plug",
+                    "value": "NGK MR8E-9"
+                },
+                {
+                    "label": "Brake Fluid",
+                    "value": "DOT 4"
+                },
+                {
+                    "label": "Turn Signal Bulb",
+                    "value": "12V 10W"
+                }
+            ]
+        },
+        {
+            "id": "adjusting",
+            "title": "Adjusting",
+            "summary": "adjusting headlight beam, body parts removal",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                }
             ],
             "sections": [
                 {
-                    "heading": "Notes",
+                    "heading": "1. Headlight Beam Adjustment",
                     "bullets": [
-                        "Check when tyres are cold.",
-                        "TBD"
+                        "Loose the headlight beam adjuster bolt (1) on the left hand side of the headlight assembly.",
+                        "Move headlight up or down to adjust the beam",
+                        "Tight the headlight beam adjuster bolt (1) to secure the position [IMG#img3]"
+                    ]
+                },
+                {
+                    "heading": "2. Seat Lock Removal",
+                    "bullets": [
+                        "Insert the key into the seat lock and turn it clockwise to unlock the seat.",
+                        "Raise the front part of the seat and slide it forward. [IMG#img4]"
+                    ]
+                },
+                {
+                    "heading": "3. Front Seat Removal",
+                    "bullets": [
+                        "Remove seat lock.",
+                        "Remove the two bolts (1) securing the front seat.",
+                        "Lift the rear part of the front seat and slide it backward to remove. [IMG#img5]"
+                    ]
+                },
+                {
+                    "heading": "4. Left Frame Cover Removal",
+                    "bullets": [
+                        "Remove seat lock and front seat.",
+                        "Remove 3 bolts (green) securing the left frame cover.",
+                        "Remove 1 fastener clip (blue) securing the left frame cover. [IMG#img6]",
+                        "Unhook the hook and remove the left frame cover. [IMG#img7]"
+                    ]
+                },
+                {
+                    "heading": "5. Right Frame Cover Removal",
+                    "bullets": [
+                        "Remove seat lock and front seat.",
+                        "Remove 3 bolts (green) securing the right frame cover.",
+                        "Remove 1 fastener clip (blue) securing the right frame cover. [IMG#img8]"
                     ]
                 }
             ]
@@ -200,8 +283,8 @@
             ],
             "data": [
                 {
-                    "label": "Label",
-                    "value": "Value"
+                    "label": "[icon:info] Label",
+                    "value": "**Value**"
                 }
             ],
             "sections": [

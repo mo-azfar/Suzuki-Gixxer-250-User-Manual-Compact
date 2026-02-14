@@ -360,6 +360,15 @@
       border-color: rgba(90,169,255,.35);
       background: rgba(90,169,255,.10);
     }
+
+    .icon{
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        margin-right: .35em;
+        opacity: .95;
+    }
+
   </style>
 </head>
 
@@ -427,6 +436,11 @@
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxClose = document.getElementById("lightboxClose");
 
+    const ICONS = {
+        warning: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 22h22L12 2z" fill="currentColor"/><path d="M12 8v6" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 17h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`,
+        info: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" fill="currentColor"/><path d="M12 10v7" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 7h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`
+    };
+
     function esc(s){
       return String(s ?? "")
         .replaceAll("&","&amp;")
@@ -448,10 +462,40 @@
       menuBtn.setAttribute("aria-expanded", "true");
       setTimeout(() => navSearch.focus(), 0);
     }
+
     function closeDrawer(){
       drawer.classList.remove("open");
       overlay.classList.remove("show");
       menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+    function renderMarkup(input){
+        let s = String(input ?? "");
+        s = esc(s);
+
+        // line breaks
+        s = s.replace(/\n/g, "<br>");
+
+        // inline code: `code`
+        s = s.replace(/`([^`]+?)`/g, "<code>$1</code>");
+
+        // underline: __text__
+        s = s.replace(/__(.+?)__/g, "<u>$1</u>");
+
+        // bold: **text**
+        s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+        // italic: *text*
+        // (avoid catching **bold** by requiring single asterisks)
+        s = s.replace(/(^|[^*])\*([^*]+?)\*(?!\*)/g, "$1<em>$2</em>");
+
+        // icons: [icon:name]
+        s = s.replace(/\[icon:([a-z0-9_-]+)\]/gi, (m, name) => {
+            const key = String(name).toLowerCase();
+            return ICONS[key] ? ICONS[key] : `<span class="muted">[icon:${esc(key)}]</span>`;
+        });
+
+        return s;
     }
 
     overlay.addEventListener("click", closeDrawer);
@@ -512,46 +556,54 @@
     }
 
     function renderInlineImagesFromText(raw){
-      const s = String(raw ?? "");
-      const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
+        const s = String(raw ?? "");
+        const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
 
-      let out = "";
-      let last = 0;
-      let m;
+        let out = "";
+        let last = 0;
+        let m;
 
-      while((m = re.exec(s)) !== null){
-        out += esc(s.slice(last, m.index));
+        while((m = re.exec(s)) !== null){
+            // Text before image token
+            out += renderMarkup(s.slice(last, m.index));
 
-        const key = m[1];
-        const src = imgPathByToken(key);
+            const key = m[1];
+            const src = imgPathByToken(key);
 
-        if(src){
-          out += `
-            <button
-              type="button"
-              class="imgref"
-              data-imgkey="${esc(key)}"
-              data-imgsrc="${esc(src)}"
-              aria-label="Open image ${esc(key)}"
-              title="Open image"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" stroke="currentColor" stroke-width="2" />
-                <path d="M8 14l2-2 3 3 3-4 3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8.5 9.5h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-              </svg>
-              <span class="imgref-label">Image</span>
-            </button>
-          `;
-        } else {
-          out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
+            if(src){
+                out += `
+                    <button
+                    type="button"
+                    class="imgref"
+                    data-imgkey="${esc(key)}"
+                    data-imgsrc="${esc(src)}"
+                    aria-label="Open image ${esc(key)}"
+                    title="Open image"
+                    >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"
+                        stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 14l2-2 3 3 3-4 3 4"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8.5 9.5h.01"
+                        stroke="currentColor" stroke-width="4"
+                        stroke-linecap="round"/>
+                    </svg>
+                    <span class="imgref-label">Image</span>
+                    </button>
+                `;
+            } else {
+                out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
+            }
+
+            last = m.index + m[0].length;
         }
 
-        last = m.index + m[0].length;
-      }
+        // Remaining text
+        out += renderMarkup(s.slice(last));
 
-      out += esc(s.slice(last));
-      return out;
+        return out;
     }
 
     function wireInlineImageLightbox(){
@@ -570,39 +622,43 @@
     }
 
     function renderSectionsBlock(topic){
-      if(!topic.sections?.length) return "";
-      return `
-        <section class="card accordion" data-accordion>
-          ${topic.sections.map(sec => `
-            <details ${(sec.open === false) ? "" : "open"} data-acc-item>
-              <summary>
-                <span class="sum-title">${esc(sec.heading)}</span>
-                <span class="chev" aria-hidden="true"></span>
-              </summary>
-              <div class="acc-body">
-                ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
-                ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>` : ""}
-              </div>
-            </details>
-          `).join("")}
-        </section>
-      `;
+        if(!topic.sections?.length) return "";
+
+        return `
+            <section class="card accordion" data-accordion>
+            ${topic.sections.map(sec => `
+                <details ${(sec.open === false) ? "" : "open"} data-acc-item>
+                <summary>
+                    <span class="sum-title">${renderMarkup(sec.heading)}</span>
+                    <span class="chev" aria-hidden="true"></span>
+                </summary>
+                <div class="acc-body">
+                    ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
+                    ${(sec.bullets?.length)
+                    ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>`
+                    : ""}
+                </div>
+                </details>
+            `).join("")}
+            </section>
+        `;
     }
 
     function renderDataBlock(topic){
-      if(!topic.data?.length) return "";
-      return `
-        <section class="card">
-          <div class="kv">
-            ${topic.data.map(kv => `
-              <div class="kv-row">
-                <span>${esc(kv.label)}</span>
-                <span>${esc(kv.value)}</span>
-              </div>
-            `).join("")}
-          </div>
-        </section>
-      `;
+        if(!topic.data?.length) return "";
+
+        return `
+            <section class="card">
+            <div class="kv">
+                ${topic.data.map(kv => `
+                <div class="kv-row">
+                    <span>${renderMarkup(kv.label)}</span>
+                    <span>${renderMarkup(kv.value)}</span>
+                </div>
+                `).join("")}
+            </div>
+            </section>
+        `;
     }
 
     function renderTopic(topic){
@@ -624,9 +680,9 @@
 
       const header = `
         <section class="card">
-          <h1 class="title">${esc(topic.title)}</h1>
-          <p class="meta">${chips}</p>
-          ${topic.summary ? `<p class="muted">${esc(topic.summary)}</p>` : ""}
+            <h1 class="title">${esc(topic.title)}</h1>
+            <p class="meta">${chips}</p>
+            ${topic.summary ? `<p class="muted">${renderMarkup(topic.summary)}</p>` : ""}
         </section>
       `;
 

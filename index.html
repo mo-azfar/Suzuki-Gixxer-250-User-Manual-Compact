@@ -2,670 +2,679 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-    <title>Suzuki Gixxer 250 User Manual (Compact)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Suzuki Gixxer 250 User Manual (Compact)</title>
 
-    <style>
-        :root {
-            --bg: #0b0d10;
-            --panel2: #0f1318;
-            --text: #e7eef7;
-            --muted: #9fb0c3;
-            --accent: #5aa9ff;
-            --phoneW: 390px;
-            --phoneH: 844px;
-            --radius: 18px;
-            --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-            --drawerW: 270px;
-        }
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel2: #0f1318;
+      --text: #e7eef7;
+      --muted: #9fb0c3;
+      --accent: #5aa9ff;
+      --phoneW: 390px;
+      --phoneH: 844px;
+      --radius: 18px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+      --drawerW: 270px;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
-        html,
-        body {
-            height: 100%;
-        }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 800px at 30% 10%,
+          #101827 0%,
+          var(--bg) 55%,
+          #07080a 100%);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
 
-        body {
-            margin: 0;
-            background: radial-gradient(1200px 800px at 30% 10%,
-                    #101827 0%,
-                    var(--bg) 55%,
-                    #07080a 100%);
-            color: var(--text);
-            font-family:
-                ui-sans-serif,
-                system-ui,
-                -apple-system,
-                Segoe UI,
-                Roboto,
-                Helvetica,
-                Arial;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
+    .phone {
+      width: min(100%, var(--phoneW));
+      height: min(100vh - 32px, var(--phoneH));
+      background: var(--panel2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
 
-        .phone {
-            width: min(100%, var(--phoneW));
-            height: min(100vh - 32px, var(--phoneH));
-            background: var(--panel2);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+    /* TOP BAR - now clearly visible */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px;
+      background: rgba(15, 19, 24, .92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
 
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 10px;
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, 0.06),
-                    rgba(255, 255, 255, 0));
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+    /* Stronger buttons */
+    .btn-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(90, 169, 255, 0.55);
+      background: rgba(90, 169, 255, 0.18);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        .btn-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            user-select: none;
-        }
+    .btn-icon:hover {
+      border-color: rgba(90, 169, 255, 0.75);
+      background: rgba(90, 169, 255, 0.26);
+    }
 
-        .btn-icon:hover {
-            border-color: rgba(90, 169, 255, 0.35);
-            background: rgba(90, 169, 255, 0.1);
-        }
+    .btn-icon:active { transform: translateY(1px); }
 
-        .btn-icon:active {
-            transform: translateY(1px);
-        }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+      min-width: 0;
+      flex: 1;
+    }
 
-        .brand {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.05;
-            min-width: 0;
-            flex: 1;
-        }
+    .brand b {
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-        .brand b {
-            font-size: 14px;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    .brand span {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-        .brand span {
-            font-size: 12px;
-            color: var(--muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    main {
+      flex: 1;
+      padding: 14px;
+      overflow: auto;
+    }
 
-        main {
-            flex: 1;
-            padding: 14px;
-            overflow: auto;
-        }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 12px;
-        }
+    .title { font-size: 16px; margin: 0 0 8px; letter-spacing: 0.2px; }
+    .meta { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
 
-        .title {
-            font-size: 16px;
-            margin: 0 0 8px;
-            letter-spacing: 0.2px;
-        }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      font-size: 11px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
 
-        .meta {
-            margin: 0 0 10px;
-            color: var(--muted);
-            font-size: 12px;
-        }
+    .kv { display: grid; gap: 8px; margin-top: 10px; }
 
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 8px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--muted);
-            font-size: 11px;
-            margin-right: 6px;
-            margin-bottom: 6px;
-        }
+    .kv-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 13px;
+    }
 
-        .kv {
-            display: grid;
-            gap: 8px;
-            margin-top: 10px;
-        }
+    .kv-row span:first-child { color: var(--muted); }
+    .muted { color: var(--muted); }
+    ul { margin-top: 5px; }
+    li { margin: 6px 0; }
 
-        .kv-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 10px 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.02);
-            font-size: 13px;
-        }
+    /* Content accordion */
+    .accordion details {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
 
-        .kv-row span:first-child {
-            color: var(--muted);
-        }
+    .accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      user-select: none;
+    }
 
-        .muted {
-            color: var(--muted);
-        }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .accordion .sum-title { font-size: 14px; letter-spacing: 0.2px; }
 
-        ul {
-            margin-top: 5px;
-        }
+    .accordion .chev {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(159, 176, 195, 0.9);
+      border-bottom: 2px solid rgba(159, 176, 195, 0.9);
+      transform: rotate(-45deg);
+      transition: transform 0.15s ease;
+      flex: 0 0 auto;
+      margin-left: 6px;
+    }
 
-        li {
-            margin: 6px 0;
-        }
+    .accordion details[open] .chev { transform: rotate(45deg); }
+    .accordion .acc-body { padding: 0 12px 12px; color: var(--text); }
 
-        /* Content accordion */
-        .accordion details {
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 14px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
+    /* Drawer */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 45;
+    }
 
-        .accordion summary {
-            list-style: none;
-            cursor: pointer;
-            padding: 12px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            user-select: none;
-        }
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-        .accordion summary::-webkit-details-marker {
-            display: none;
-        }
+    .drawer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--drawerW);
+      background: rgba(18, 22, 28, 0.98);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      transform: translateX(-102%);
+      transition: transform 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 10px;
+      z-index: 55;
+    }
 
-        .accordion .sum-title {
-            font-size: 14px;
-            letter-spacing: 0.2px;
-        }
+    .drawer.open { transform: translateX(0); }
 
-        .accordion .chev {
-            width: 10px;
-            height: 10px;
-            border-right: 2px solid rgba(159, 176, 195, 0.9);
-            border-bottom: 2px solid rgba(159, 176, 195, 0.9);
-            transform: rotate(-45deg);
-            transition: transform 0.15s ease;
-            flex: 0 0 auto;
-            margin-left: 6px;
-        }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 4px 2px 10px;
+    }
 
-        .accordion details[open] .chev {
-            transform: rotate(45deg);
-        }
+    .drawer-title {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
 
-        .accordion .acc-body {
-            padding: 0 12px 12px;
-            color: var(--text);
-        }
+    .drawer-search {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 12px;
+      outline: none;
+      margin: 2px 0 10px;
+    }
 
-        /* Drawer */
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.18s ease;
-        }
+    .drawer-search::placeholder { color: rgba(159, 176, 195, 0.75); }
 
-        .overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
+    .drawer-list {
+      overflow: auto;
+      padding-right: 2px;
+    }
 
-        .drawer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: var(--drawerW);
-            background: rgba(18, 22, 28, 0.98);
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
-            transform: translateX(-102%);
-            transition: transform 0.18s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 12px 10px;
-        }
+    .nav-item {
+      display: block;
+      padding: 10px 10px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid transparent;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.02);
+    }
 
-        .drawer.open {
-            transform: translateX(0);
-        }
+    .nav-item:hover {
+      border-color: rgba(90, 169, 255, 0.35);
+      background: rgba(90, 169, 255, 0.1);
+    }
 
-        .drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 4px 2px 10px;
-        }
+    .nav-item.active {
+      border-color: rgba(90, 169, 255, 0.55);
+      background: rgba(90, 169, 255, 0.18);
+    }
 
-        .drawer-title {
-            font-size: 11px;
-            color: var(--muted);
-            font-weight: 700;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-        }
+    .nav-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+    }
 
-        .drawer-search {
-            width: 100%;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text);
-            padding: 8px 10px;
-            font-size: 12px;
-            outline: none;
-            margin: 2px 0 10px;
-        }
+    /* Search result styling */
+    .result-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2px 6px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
 
-        .drawer-search::placeholder {
-            color: rgba(159, 176, 195, 0.75);
-        }
+    mark {
+      background: rgba(90, 169, 255, 0.22);
+      color: var(--text);
+      padding: 0 2px;
+      border-radius: 4px;
+    }
 
-        .drawer-list {
-            overflow: auto;
-            padding-right: 2px;
-        }
+    /* Lightbox */
+    .lightbox-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 70;
+    }
 
-        .nav-item {
-            display: block;
-            padding: 10px 10px;
-            border-radius: 12px;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 13px;
-            border: 1px solid transparent;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.02);
-        }
+    .lightbox-overlay.show { display: flex; }
 
-        .nav-item:hover {
-            border-color: rgba(90, 169, 255, 0.35);
-            background: rgba(90, 169, 255, 0.1);
-        }
+    .lightbox-panel {
+      position: relative;
+      max-width: 80vw;
+      max-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .nav-item.active {
-            border-color: rgba(90, 169, 255, 0.55);
-            background: rgba(90, 169, 255, 0.18);
-        }
+    .lightbox-img {
+      max-width: 80vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      background: rgba(255, 255, 255, .02);
+    }
 
-        .nav-item small {
-            display: block;
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 4px;
-        }
+    .lightbox-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(18, 22, 28, .95);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        /* Search result styling */
-        .result-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 10px;
-            color: var(--muted);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2px 6px;
-            border-radius: 999px;
-            margin-top: 6px;
-        }
+    .lightbox-close:hover {
+      border-color: rgba(90, 169, 255, .35);
+      background: rgba(90, 169, 255, .10);
+    }
 
-        mark {
-            background: rgba(90, 169, 255, 0.22);
-            color: var(--text);
-            padding: 0 2px;
-            border-radius: 4px;
-        }
+    /* FAILSAFE: Floating Menu Button (always visible) */
+    .fab-menu {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 65; /* above content and topbar */
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      border: 1px solid rgba(90, 169, 255, 0.75);
+      background: rgba(18, 22, 28, .95);
+      color: var(--text);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* Lightbox */
-        .lightbox-overlay{
-            position:absolute;
-            inset:0;
-            background: rgba(0,0,0,.65);
-            display:none;
-            align-items:center;
-            justify-content:center;
-            padding:16px;
-            z-index: 50;
-        }
-        .lightbox-overlay.show{ display:flex; }
-
-        .lightbox-panel{
-            position:relative;
-            max-width: 80vw;
-            max-height: 80vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-
-        .lightbox-img{
-            max-width: 80vw;
-            max-height: 80vh;
-            width:auto;
-            height:auto;
-            border-radius:16px;
-            border:1px solid rgba(255,255,255,.10);
-            background: rgba(255,255,255,.02);
-        }
-
-        .lightbox-close{
-            position:absolute;
-            top:-10px;
-            right:-10px;
-            width:36px;
-            height:36px;
-            border-radius:12px;
-            border:1px solid rgba(255,255,255,.12);
-            background: rgba(18,22,28,.95);
-            color: var(--text);
-            cursor:pointer;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-        
-        .lightbox-close:hover{
-            border-color: rgba(90,169,255,.35);
-            background: rgba(90,169,255,.10);
-        }
-
-    </style>
+    .fab-menu:active { transform: translateY(1px); }
+    .drawer.open ~ .fab-menu { display: none; } /* optional */
+  </style>
 </head>
 
 <body>
-    <div class="phone" role="application" aria-label="Suzuki Gixxer 250 Compact Manual">
-        <header class="topbar">
-            <button id="menuBtn" class="btn-icon" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
+  <div class="phone" role="application" aria-label="Suzuki Gixxer 250 Compact Manual">
+    <header class="topbar">
+      <button id="menuBtn" class="btn-icon" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+        </svg>
+      </button>
 
-            <div class="brand">
-                <b id="appTitle">Compact Manual</b>
-                <span id="appSubtitle">Home</span>
-            </div>
-        </header>
+      <div class="brand">
+        <b id="appTitle">Compact Manual</b>
+        <span id="appSubtitle">Home</span>
+      </div>
+    </header>
 
-        <main id="content" aria-live="polite"></main>
+    <main id="content" aria-live="polite"></main>
 
-        <div id="overlay" class="overlay" aria-hidden="true"></div>
+    <div id="overlay" class="overlay" aria-hidden="true"></div>
 
-        <aside id="drawer" class="drawer" aria-label="Navigation menu">
-            <div class="drawer-header">
-                <div class="drawer-title">Topics</div>
-                <button id="closeBtn" class="btn-icon" aria-label="Close menu">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-                </button>
-            </div>
+    <aside id="drawer" class="drawer" aria-label="Navigation menu">
+      <div class="drawer-header">
+        <div class="drawer-title">Topics</div>
+        <button id="closeBtn" class="btn-icon" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
 
-            <input id="navSearch" class="drawer-search" type="search" placeholder="Search topics & content…" />
-            <div id="nav" class="drawer-list"></div>
-        </aside>
+      <input id="navSearch" class="drawer-search" type="search" placeholder="Search topics & content…" />
+      <div id="nav" class="drawer-list"></div>
+    </aside>
 
-        <!-- Lightbox -->
-        <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
-        <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image viewer">
-            <button id="lightboxClose" class="lightbox-close" aria-label="Close image">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            </button>
-            <img id="lightboxImg" class="lightbox-img" alt="" />
-        </div>
-        </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lightboxClose" class="lightbox-close" aria-label="Close image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          </svg>
+        </button>
+        <img id="lightboxImg" class="lightbox-img" alt="" />
+      </div>
     </div>
 
-    <script>
-        const DATA_URL = "data/manual.json";
+    <!-- Floating menu (failsafe) -->
+    <button id="fabMenuBtn" class="fab-menu" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
 
-        let manual = null;
-        let topicsById = new Map();
-        let orderedTopics = [];
+  <script>
+    const DATA_URL = "data/manual.json";
 
-        const drawer = document.getElementById("drawer");
-        const overlay = document.getElementById("overlay");
-        const menuBtn = document.getElementById("menuBtn");
-        const closeBtn = document.getElementById("closeBtn");
-        const nav = document.getElementById("nav");
-        const subtitle = document.getElementById("appSubtitle");
-        const navSearch = document.getElementById("navSearch");
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightboxImg");
-        const lightboxClose = document.getElementById("lightboxClose");
+    let manual = null;
+    let topicsById = new Map();
+    let orderedTopics = [];
 
-        function esc(s) {
-            return String(s ?? "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const nav = document.getElementById("nav");
+    const subtitle = document.getElementById("appSubtitle");
+    const navSearch = document.getElementById("navSearch");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    const fabMenuBtn = document.getElementById("fabMenuBtn");
+
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getRoute() {
+      const hash = location.hash || "#/home";
+      const route = hash.replace(/^#\//, "");
+      return route || "home";
+    }
+
+    // ---------- Drawer ----------
+    function openDrawer() {
+      drawer.classList.add("open");
+      overlay.classList.add("show");
+      menuBtn.setAttribute("aria-expanded", "true");
+      setTimeout(() => navSearch.focus(), 0);
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("open");
+      overlay.classList.remove("show");
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleDrawer() {
+      drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+    }
+
+    overlay.addEventListener("click", closeDrawer);
+    menuBtn.addEventListener("click", toggleDrawer);
+    closeBtn.addEventListener("click", closeDrawer);
+    fabMenuBtn.addEventListener("click", openDrawer);
+
+    // ---------- Lightbox ----------
+    function openLightbox(src, alt = "") {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "Image";
+      lightbox.classList.add("show");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+    }
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (lightbox.classList.contains("show")) closeLightbox();
+        else closeDrawer();
+      }
+    });
+
+    // ---------- Active nav ----------
+    function setActive(route) {
+      document.querySelectorAll(".nav-item").forEach((a) => {
+        a.classList.toggle("active", a.dataset.route === route);
+      });
+    }
+
+    // ---------- Rendering order ----------
+    function getRenderPlan(topic) {
+      const hasSections = Array.isArray(topic.sections) && topic.sections.length > 0;
+      const hasData = Array.isArray(topic.data) && topic.data.length > 0;
+
+      if (Array.isArray(topic.blocks) && topic.blocks.length) {
+        const plan = topic.blocks
+          .map((b) => b?.type)
+          .filter((t) => (t === "sections" && hasSections) || (t === "data" && hasData));
+
+        if (hasSections && !plan.includes("sections")) plan.push("sections");
+        if (hasData && !plan.includes("data")) plan.push("data");
+        return plan;
+      }
+
+      const plan = [];
+      if (hasSections) plan.push("sections");
+      if (hasData) plan.push("data");
+      return plan;
+    }
+
+    // ---------- Inline images via [IMG#KEY] ----------
+    function imgPathByToken(token) {
+      const key = String(token || "").trim();
+      return manual?.images?.[key] || "";
+    }
+
+    function renderInlineImagesFromText(raw) {
+      const s = String(raw ?? "");
+      const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
+
+      let out = "";
+      let last = 0;
+      let m;
+
+      while ((m = re.exec(s)) !== null) {
+        const before = s.slice(last, m.index);
+        out += esc(before);
+
+        const key = m[1];
+        const src = imgPathByToken(key);
+
+        if (src) {
+          out += `
+            <div style="margin:10px 0;">
+              <img
+                src="${esc(src)}"
+                alt="Image ${esc(key)}"
+                loading="lazy"
+                class="inline-img"
+                data-fullsrc="${esc(src)}"
+                style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); cursor: zoom-in;"
+              />
+            </div>
+          `;
+        } else {
+          out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
         }
 
-        function getRoute() {
-            const hash = location.hash || "#/home";
-            const route = hash.replace(/^#\//, "");
-            return route || "home";
-        }
+        last = m.index + m[0].length;
+      }
 
-        function openLightbox(src, alt=""){
-            lightboxImg.src = src;
-            lightboxImg.alt = alt || "Image";
-            lightbox.classList.add("show");
-            lightbox.setAttribute("aria-hidden", "false");
-        }
+      out += esc(s.slice(last));
+      return out;
+    }
 
-        function closeLightbox(){
-            lightbox.classList.remove("show");
-            lightbox.setAttribute("aria-hidden", "true");
-            // clear src to stop large image memory use on mobile
-            lightboxImg.src = "";
-            lightboxImg.alt = "";
-        }
-
-        // close controls
-        lightbox.addEventListener("click", (e) => {
-            // close when tapping background (not image/panel)
-            if(e.target === lightbox) closeLightbox();
+    function wireInlineImageLightbox() {
+      document.querySelectorAll("img.inline-img[data-fullsrc]").forEach((img) => {
+        img.addEventListener("click", () => {
+          openLightbox(img.dataset.fullsrc, img.alt || "");
         });
+      });
+    }
 
-        lightboxClose.addEventListener("click", closeLightbox);
-
-        window.addEventListener("keydown", (e) => {
-            if(e.key === "Escape"){
-                // close whichever is open
-                if(lightbox.classList.contains("show")) closeLightbox();
-                else closeDrawer(); // your existing drawer close
-            }
-        });
-
-        // bind clicks for newly rendered content
-        function wireInlineImageLightbox(){
-            document.querySelectorAll("img.inline-img[data-fullsrc]").forEach(img => {
-                img.addEventListener("click", () => {
-                openLightbox(img.dataset.fullsrc, img.alt || "");
-                });
-            });
-        }
-
-        function openDrawer() {
-            drawer.classList.add("open");
-            overlay.classList.add("show");
-            menuBtn.setAttribute("aria-expanded", "true");
-            // focus search for quick jump
-            setTimeout(() => navSearch.focus(), 0);
-        }
-        function closeDrawer() {
-            drawer.classList.remove("open");
-            overlay.classList.remove("show");
-            menuBtn.setAttribute("aria-expanded", "false");
-        }
-        function toggleDrawer() {
-            drawer.classList.contains("open") ? closeDrawer() : openDrawer();
-        }
-
-        overlay.addEventListener("click", closeDrawer);
-        menuBtn.addEventListener("click", toggleDrawer);
-        closeBtn.addEventListener("click", closeDrawer);
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeDrawer();
-        });
-
-        function setActive(route) {
-            document.querySelectorAll(".nav-item").forEach((a) => {
-                a.classList.toggle("active", a.dataset.route === route);
-            });
-        }
-
-        // ----- Block rendering order (robust) -----
-        // If topic.blocks exists, we follow it.
-        // Otherwise default to: sections then data.
-        function getRenderPlan(topic) {
-            const hasSections =
-                Array.isArray(topic.sections) && topic.sections.length > 0;
-            const hasData = Array.isArray(topic.data) && topic.data.length > 0;
-
-            if (Array.isArray(topic.blocks) && topic.blocks.length) {
-                // Only keep supported blocks that exist
-                const plan = topic.blocks
-                    .map((b) => b?.type)
-                    .filter(
-                        (t) =>
-                            (t === "sections" && hasSections) || (t === "data" && hasData),
-                    );
-                // If blocks omits something, append it at end
-                if (hasSections && !plan.includes("sections")) plan.push("sections");
-                if (hasData && !plan.includes("data")) plan.push("data");
-                return plan;
-            }
-
-            // Backward compatible default
-            const plan = [];
-            if (hasSections) plan.push("sections");
-            if (hasData) plan.push("data");
-            return plan;
-        }
-
-        function renderSectionsBlock(topic) {
-            if (!topic.sections?.length) return "";
-            return `
+    function renderSectionsBlock(topic) {
+      if (!topic.sections?.length) return "";
+      return `
         <section class="card accordion" data-accordion>
-          ${topic.sections
-                    .map(
-                        (sec) => `
+          ${topic.sections.map(sec => `
             <details ${sec.open === false ? "" : "open"} data-acc-item>
               <summary>
                 <span class="sum-title">${esc(sec.heading)}</span>
                 <span class="chev" aria-hidden="true"></span>
               </summary>
               <div class="acc-body">
-                ${sec.text ? `<p class="muted">${esc(sec.text)}</p>` : ""}
-                ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>` : ""}
+                ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
+                ${(sec.bullets?.length)
+                  ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>`
+                  : ""}
               </div>
             </details>
-          `,
-                    )
-                    .join("")}
+          `).join("")}
         </section>
       `;
-        }
+    }
 
-        function renderDataBlock(topic) {
-            if (!topic.data?.length) return "";
-            return `
+    function renderDataBlock(topic) {
+      if (!topic.data?.length) return "";
+      return `
         <section class="card">
           <div class="kv">
-            ${topic.data
-                    .map(
-                        (kv) => `
+            ${topic.data.map(kv => `
               <div class="kv-row">
                 <span>${esc(kv.label)}</span>
                 <span>${esc(kv.value)}</span>
               </div>
-            `,
-                    )
-                    .join("")}
+            `).join("")}
           </div>
         </section>
       `;
-        }
+    }
 
-        function renderTopic(topic) {
-            if (!topic) {
-                subtitle.textContent = "Not found";
-                return `
+    function renderTopic(topic) {
+      if (!topic) {
+        subtitle.textContent = "Not found";
+        return `
           <section class="card">
             <h1 class="title">Not found</h1>
             <p class="muted">This topic doesn’t exist.</p>
           </section>
         `;
-            }
+      }
 
-            subtitle.textContent = topic.title || topic.id;
+      subtitle.textContent = topic.title || topic.id;
 
-            const chips = [
-                topic.applicable_models?.length
-                    ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>`
-                    : "",
-            ]
-                .filter(Boolean)
-                .join("");
+      const chips = [
+        topic.applicable_models?.length
+          ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>`
+          : ""
+      ].filter(Boolean).join("");
 
-            const header = `
+      const header = `
         <section class="card">
           <h1 class="title">${esc(topic.title)}</h1>
           <p class="meta">${chips}</p>
@@ -673,253 +682,176 @@
         </section>
       `;
 
-            const plan = getRenderPlan(topic);
-            const blocksHtml = plan
-                .map((t) => {
-                    if (t === "sections") return renderSectionsBlock(topic);
-                    if (t === "data") return renderDataBlock(topic);
-                    return "";
-                })
-                .join("");
+      const plan = getRenderPlan(topic);
+      const blocksHtml = plan.map(t => {
+        if (t === "sections") return renderSectionsBlock(topic);
+        if (t === "data") return renderDataBlock(topic);
+        return "";
+      }).join("");
 
-            return header + blocksHtml;
-        }
+      return header + blocksHtml;
+    }
 
-        // Content accordion: single-open inside content area
-        function wireContentAccordions() {
-            document.querySelectorAll("[data-accordion]").forEach((acc) => {
-                const items = Array.from(
-                    acc.querySelectorAll("details[data-acc-item]"),
-                );
-                items.forEach((d) => {
-                    d.addEventListener("toggle", () => {
-                        if (!d.open) return;
-                        items.forEach((other) => {
-                            if (other !== d) other.open = false;
-                        });
-                    });
-                });
+    // Content accordion: single-open inside each accordion
+    function wireContentAccordions() {
+      document.querySelectorAll("[data-accordion]").forEach((acc) => {
+        const items = Array.from(acc.querySelectorAll("details[data-acc-item]"));
+        items.forEach((d) => {
+          d.addEventListener("toggle", () => {
+            if (!d.open) return;
+            items.forEach((other) => {
+              if (other !== d) other.open = false;
             });
+          });
+        });
+      });
+    }
+
+    function render() {
+      const route = getRoute();
+      const topic = topicsById.get(route);
+      document.getElementById("content").innerHTML = renderTopic(topic);
+      setActive(route);
+      wireContentAccordions();
+      wireInlineImageLightbox();
+    }
+
+    // ---------- Search ----------
+    function topicSearchText(topic) {
+      const parts = [];
+      parts.push(topic.title, topic.summary);
+
+      if (Array.isArray(topic.data)) {
+        for (const kv of topic.data) parts.push(kv.label, kv.value);
+      }
+      if (Array.isArray(topic.sections)) {
+        for (const sec of topic.sections) {
+          parts.push(sec.heading);
+          if (Array.isArray(sec.bullets)) parts.push(...sec.bullets);
+          if (sec.text) parts.push(sec.text);
+        }
+      }
+      return parts.filter(Boolean).join(" \n ");
+    }
+
+    function makeSnippet(text, q) {
+      const lower = text.toLowerCase();
+      const idx = lower.indexOf(q);
+      if (idx === -1) return "";
+      const start = Math.max(0, idx - 35);
+      const end = Math.min(text.length, idx + q.length + 45);
+      let snip = text.slice(start, end).trim();
+      if (start > 0) snip = "…" + snip;
+      if (end < text.length) snip = snip + "…";
+      return snip;
+    }
+
+    function highlightSnippet(snip, q) {
+      const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
+      return esc(snip).replace(re, (m) => `<mark>${esc(m)}</mark>`);
+    }
+
+    function renderNavList(items, route, qStr = "") {
+      nav.innerHTML =
+        items.map((item) => {
+          const t = item.topic;
+          const hint = item.hint || t.summary || "";
+          const pill = item.kind ? `<span class="result-pill">${esc(item.kind)}</span>` : "";
+          const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
+
+          return `
+            <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
+              ${esc(t.title)}
+              <small>${small}</small>
+              ${pill}
+            </a>
+          `;
+        }).join("") || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
+
+      setActive(route);
+
+      nav.querySelectorAll("a.nav-item").forEach((a) => {
+        a.addEventListener("click", () => closeDrawer());
+      });
+    }
+
+    function renderNavDefault() {
+      const route = getRoute();
+      const items = orderedTopics.map((t) => ({ topic: t, hint: t.summary || "", kind: "" }));
+      renderNavList(items, route, "");
+    }
+
+    function renderNavSearch(qRaw) {
+      const route = getRoute();
+      const q = qRaw.trim().toLowerCase();
+      if (!q) { renderNavDefault(); return; }
+
+      const results = [];
+      for (const t of orderedTopics) {
+        const hay = topicSearchText(t);
+        const lower = hay.toLowerCase();
+        if (!lower.includes(q)) continue;
+
+        let hint = "";
+        let kind = "match";
+
+        const titleSummary = [t.title, t.summary].filter(Boolean).join(" — ");
+        if (titleSummary.toLowerCase().includes(q)) {
+          hint = titleSummary;
+          kind = "title/summary";
+        } else {
+          const snip = makeSnippet(hay, q);
+          hint = snip || t.summary || "";
+          kind = "content";
         }
 
-        function render() {
-            const route = getRoute();
-            const topic = topicsById.get(route);
-            document.getElementById("content").innerHTML = renderTopic(topic);
-            setActive(route);
-            wireContentAccordions();
-            wireInlineImageLightbox();
-        }
+        results.push({ topic: t, hint, kind });
+      }
 
-        function imgPathByToken(token){
-            const key = String(token || "").trim();
-            return manual?.images?.[key] || "";
-        }
+      results.sort((a, b) => {
+        const w = (x) => (x.kind === "title/summary" ? 0 : 1);
+        return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
+      });
 
-        function renderInlineImagesFromText(raw){
-            // Returns HTML (escaped text + <img> tags) from strings containing [IMG#KEY]
-            const s = String(raw ?? "");
-            const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
+      renderNavList(results, route, q);
+    }
 
-            let out = "";
-            let last = 0;
-            let m;
+    async function init() {
+      const res = await fetch(DATA_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
+      manual = await res.json();
 
-            while((m = re.exec(s)) !== null){
-                const before = s.slice(last, m.index);
-                out += esc(before);
+      orderedTopics = (manual.topics || []).filter(t => t && t.disabled !== true);
+      topicsById = new Map(orderedTopics.map(t => [t.id, t]));
 
-                const key = m[1];
-                const src = imgPathByToken(key);
+      document.getElementById("appTitle").textContent = `${manual.model}`;
 
-                if(src){
-                out += `
-                    <div style="margin:10px 0;">
-                        <img src="${esc(src)}" alt="Image ${esc(key)}" loading="lazy" class="inline-img"
-                        data-fullsrc="${esc(src)}"
-                        style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); cursor: zoom-in;"
-                        />
-                    </div>
-                `;
-                } else {
-                // If mapping missing, keep a visible placeholder
-                out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
-                }
+      if (!topicsById.has(getRoute())) location.hash = "#/home";
+      if (!location.hash) location.hash = "#/home";
 
-                last = m.index + m[0].length;
-            }
+      renderNavDefault();
 
-            out += esc(s.slice(last));
-            return out;
-        }
+      navSearch.addEventListener("input", () => renderNavSearch(navSearch.value));
 
+      window.addEventListener("hashchange", () => {
+        render();
+        setActive(getRoute());
+      });
 
+      render();
+      closeDrawer();
+    }
 
-        // ----- Search (short result + jump) -----
-        function stripHtml(s) {
-            return String(s ?? "").replace(/<[^>]*>/g, "");
-        }
-
-        function topicSearchText(topic) {
-            const parts = [];
-            parts.push(topic.title, topic.summary);
-
-            if (Array.isArray(topic.data)) {
-                for (const kv of topic.data) {
-                    parts.push(kv.label, kv.value);
-                }
-            }
-            if (Array.isArray(topic.sections)) {
-                for (const sec of topic.sections) {
-                    parts.push(sec.heading);
-                    if (Array.isArray(sec.bullets)) parts.push(...sec.bullets);
-                    if (sec.text) parts.push(sec.text);
-                }
-            }
-            return parts.filter(Boolean).join(" \n ");
-        }
-
-        function makeSnippet(text, q) {
-            const lower = text.toLowerCase();
-            const idx = lower.indexOf(q);
-            if (idx === -1) return "";
-            const start = Math.max(0, idx - 35);
-            const end = Math.min(text.length, idx + q.length + 45);
-            let snip = text.slice(start, end).trim();
-            if (start > 0) snip = "…" + snip;
-            if (end < text.length) snip = snip + "…";
-            return snip;
-        }
-
-        function highlightSnippet(snip, q) {
-            const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
-            return esc(snip).replace(re, (m) => `<mark>${esc(m)}</mark>`);
-        }
-
-        function renderNavList(items, route, qStr = "") {
-            nav.innerHTML =
-                items
-                    .map((item) => {
-                        const t = item.topic;
-                        const hint = item.hint || t.summary || "";
-                        const pill = item.kind
-                            ? `<span class="result-pill">${esc(item.kind)}</span>`
-                            : "";
-                        const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
-
-                        return `
-          <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
-            ${esc(t.title)}
-            <small>${small}</small>
-            ${pill}
-          </a>
-        `;
-                    })
-                    .join("") ||
-                `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
-
-            setActive(route);
-
-            // Auto-close drawer after choosing a topic
-            nav.querySelectorAll("a.nav-item").forEach((a) => {
-                a.addEventListener("click", () => closeDrawer());
-            });
-        }
-
-        function renderNavDefault() {
-            const route = getRoute();
-            const items = orderedTopics.map((t) => ({
-                topic: t,
-                hint: t.summary || "",
-                kind: "",
-            }));
-            renderNavList(items, route, "");
-        }
-
-        function renderNavSearch(qRaw) {
-            const route = getRoute();
-            const q = qRaw.trim().toLowerCase();
-            if (!q) {
-                renderNavDefault();
-                return;
-            }
-
-            const results = [];
-            for (const t of orderedTopics) {
-                const hay = topicSearchText(t);
-                const lower = hay.toLowerCase();
-                if (!lower.includes(q)) continue;
-
-                // Prefer snippet from: title/summary first, else from body
-                let hint = "";
-                let kind = "match";
-
-                const titleSummary = [t.title, t.summary].filter(Boolean).join(" — ");
-                if (titleSummary.toLowerCase().includes(q)) {
-                    hint = titleSummary;
-                    kind = "title/summary";
-                } else {
-                    const snip = makeSnippet(hay, q);
-                    hint = snip || t.summary || "";
-                    kind = "content";
-                }
-
-                results.push({ topic: t, hint, kind });
-            }
-
-            // Basic ranking: title/summary matches first, then content
-            results.sort((a, b) => {
-                const w = (x) => (x.kind === "title/summary" ? 0 : 1);
-                return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
-            });
-
-            renderNavList(results, route, q);
-        }
-
-        async function init() {
-            const res = await fetch(DATA_URL, { cache: "no-store" });
-            if (!res.ok)
-                throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
-            manual = await res.json();
-
-            orderedTopics = (manual.topics || []).filter(t => t && t.disabled !== true);
-            topicsById = new Map(orderedTopics.map(t => [t.id, t]));
-
-            document.getElementById("appTitle").textContent = `${manual.model}`;
-
-            // Default route
-            if (!topicsById.has(getRoute())) location.hash = "#/home";
-            if (!location.hash) location.hash = "#/home";
-
-            // Drawer list (default)
-            renderNavDefault();
-
-            // Search in drawer
-            navSearch.addEventListener("input", () =>
-                renderNavSearch(navSearch.value),
-            );
-
-            // Route changes
-            window.addEventListener("hashchange", () => {
-                render();
-                setActive(getRoute());
-            });
-
-            // Initial render (Home) + keep drawer collapsed
-            render();
-            closeDrawer();
-        }
-
-        init().catch((err) => {
-            document.getElementById("content").innerHTML = `
+    init().catch((err) => {
+      document.getElementById("content").innerHTML = `
         <section class="card">
           <h1 class="title">Error</h1>
           <p class="muted">${esc(err.message)}</p>
           <p class="muted">Make sure <code>data/manual.json</code> exists and GitHub Pages is serving it.</p>
         </section>
       `;
-        });
-    </script>
+    });
+  </script>
 </body>
 
 </html>

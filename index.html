@@ -6,34 +6,20 @@
   <title>GSX250RL Micro Manual</title>
   <style>
     :root{
-      --bg: #0b0d10;
-      --panel: #12161c;
-      --panel2:#0f1318;
-      --text:#e7eef7;
-      --muted:#9fb0c3;
-      --border:#233041;
-      --accent:#5aa9ff;
-      --phoneW: 390px;   /* iPhone 12/13/14-ish */
-      --phoneH: 844px;
-      --navW: 140px;     /* slim left nav like a mobile app drawer */
-      --radius: 18px;
-      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --bg:#0b0d10; --panel:#12161c; --panel2:#0f1318; --text:#e7eef7; --muted:#9fb0c3;
+      --border:#233041; --accent:#5aa9ff;
+      --phoneW:390px; --phoneH:844px; --navW:140px;
+      --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.45);
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
       background: radial-gradient(1200px 800px at 30% 10%, #101827 0%, var(--bg) 55%, #07080a 100%);
       color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      display:flex; align-items:center; justify-content:center; padding:16px;
     }
-
-    /* Always-mobile presentation: a centered "phone canvas" */
     .phone{
       width:min(100%, var(--phoneW));
       height:min(100vh - 32px, var(--phoneH));
@@ -42,44 +28,28 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      position:relative;
+      display:flex; flex-direction:column;
     }
-
     .topbar{
       height:52px;
-      display:flex;
-      align-items:center;
-      gap:10px;
+      display:flex; align-items:center; justify-content:space-between;
       padding:0 14px;
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .brand{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
+    .brand{ display:flex; flex-direction:column; line-height:1.05; }
     .brand b{ font-size:14px; letter-spacing:.2px; }
     .brand span{ font-size:12px; color:var(--muted); }
-
-    .layout{
-      flex:1;
-      display:flex;
-      min-height:0; /* allow children to scroll */
-    }
-
-    /* Left nav */
+    .layout{ flex:1; display:flex; min-height:0; }
     nav{
-      width: var(--navW);
+      width:var(--navW);
       background: rgba(255,255,255,.03);
       border-right:1px solid rgba(255,255,255,.06);
       padding:12px 10px;
       overflow:auto;
     }
-    nav h3{
-      margin:0 0 10px;
+    .nav-group-title{
+      margin:12px 0 8px;
       font-size:11px;
       color:var(--muted);
       font-weight:600;
@@ -111,13 +81,7 @@
       font-size:11px;
       margin-top:4px;
     }
-
-    /* Right container */
-    main{
-      flex:1;
-      padding:14px;
-      overflow:auto;
-    }
+    main{ flex:1; padding:14px; overflow:auto; }
     .card{
       background: rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
@@ -125,168 +89,226 @@
       padding:14px;
       margin-bottom:12px;
     }
-    .title{
-      font-size:16px;
-      margin:0 0 8px;
-      letter-spacing:.2px;
-    }
-    .meta{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:12px;
-    }
+    .title{ font-size:16px; margin:0 0 8px; letter-spacing:.2px; }
+    .meta{ margin:0 0 10px; color:var(--muted); font-size:12px; }
     .chip{
-      display:inline-flex;
-      align-items:center;
-      padding:4px 8px;
-      border-radius:999px;
+      display:inline-flex; align-items:center;
+      padding:4px 8px; border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       color:var(--muted);
       font-size:11px;
       margin-right:6px;
+      margin-bottom:6px;
     }
-    ul{ margin:8px 0 0 18px; color:var(--text); }
+    .kv{ display:grid; gap:8px; margin-top:10px; }
+    .kv-row{
+      display:flex; justify-content:space-between; gap:10px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      font-size:13px;
+    }
+    .kv-row span:first-child{ color:var(--muted); }
+    ul{ margin:8px 0 0 18px; }
     li{ margin:6px 0; }
     .muted{ color:var(--muted); }
-
-    /* Keep it "mobile-like" even on wide screens */
-    @media (min-width: 520px){
-      body{ padding:24px; }
+    .search{
+      width: 150px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:8px 10px;
+      font-size:12px;
+      outline:none;
     }
+    .search::placeholder{ color: rgba(159,176,195,.75); }
   </style>
 </head>
 <body>
   <div class="phone" role="application" aria-label="GSX250RL Micro Manual">
     <header class="topbar">
       <div class="brand">
-        <b>GSX250RL Micro Manual</b>
-        <span>Mobile-first • GitHub Pages</span>
+        <b id="appTitle">Micro Manual</b>
+        <span id="appSubtitle">Loading data…</span>
       </div>
+      <input id="search" class="search" type="search" placeholder="Search…" />
     </header>
 
     <div class="layout">
-      <nav aria-label="Topics">
-        <h3>Topics</h3>
-
-        <a class="nav-item" href="#/home" data-route="home">
-          Home
-          <small>Overview</small>
-        </a>
-
-        <a class="nav-item" href="#/engine-oil" data-route="engine-oil">
-          Engine Oil
-          <small>Type & capacity</small>
-        </a>
-
-        <a class="nav-item" href="#/tyre-pressure" data-route="tyre-pressure">
-          Tyre Pressure
-          <small>Front / rear</small>
-        </a>
-
-        <a class="nav-item" href="#/frame-cover" data-route="frame-cover">
-          Frame Cover
-          <small>Open / remove</small>
-        </a>
-      </nav>
-
+      <nav id="nav" aria-label="Topics"></nav>
       <main id="content" aria-live="polite"></main>
     </div>
   </div>
 
   <script>
-    // Minimal router (hash-based) + content placeholders.
-    // Later: replace `pages` with JSON-driven rendering.
-    const pages = {
-      home: () => `
-        <section class="card">
-          <h1 class="title">Welcome</h1>
-          <p class="meta">
-            <span class="chip">Model: GSX250RL</span>
-            <span class="chip">Source: Suzuki PDF</span>
-          </p>
-          <p class="muted">
-            This is a task-based micro manual. Pick a topic on the left.
-          </p>
-        </section>
+    const DATA_URL = "data/manual.json";
 
-        <section class="card">
-          <h2 class="title">How it will work</h2>
-          <ul>
-            <li>Topic list (left) comes from JSON.</li>
-            <li>Clicking a topic updates the URL (<code>#/topic-id</code>).</li>
-            <li>Content renders in the right container.</li>
-          </ul>
-        </section>
-      `,
+    let manual = null;
+    let topicsById = new Map();
 
-      "engine-oil": () => `
-        <section class="card">
-          <h1 class="title">Engine Oil</h1>
-          <p class="meta"><span class="chip">Coming from JSON</span></p>
-          <ul>
-            <li><b>Oil type:</b> (placeholder)</li>
-            <li><b>Standard:</b> (placeholder)</li>
-            <li><b>Capacity:</b> (placeholder)</li>
-          </ul>
-          <p class="muted" style="margin-top:10px;">
-            Later we’ll inject the real values and add “source pages” references.
-          </p>
-        </section>
-      `,
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;").replaceAll("<","&lt;")
+        .replaceAll(">","&gt;").replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
 
-      "tyre-pressure": () => `
-        <section class="card">
-          <h1 class="title">Tyre Pressure</h1>
-          <p class="meta"><span class="chip">Coming from JSON</span></p>
-          <ul>
-            <li><b>Front:</b> (placeholder)</li>
-            <li><b>Rear:</b> (placeholder)</li>
-            <li><b>With passenger/cargo:</b> (placeholder)</li>
-          </ul>
-        </section>
-      `,
-
-      "frame-cover": () => `
-        <section class="card">
-          <h1 class="title">Frame Cover</h1>
-          <p class="meta"><span class="chip">Coming from JSON</span></p>
-          <ul>
-            <li>Step 1: (placeholder)</li>
-            <li>Step 2: (placeholder)</li>
-            <li>Step 3: (placeholder)</li>
-          </ul>
-        </section>
-      `
-    };
-
-    function getRoute() {
+    function getRoute(){
       const hash = location.hash || "#/home";
       const route = hash.replace(/^#\//, "");
       return route || "home";
     }
 
-    function setActive(route) {
+    function setActive(route){
       document.querySelectorAll(".nav-item").forEach(a => {
         a.classList.toggle("active", a.dataset.route === route);
       });
     }
 
-    function render() {
-      const route = getRoute();
-      const view = pages[route] || (() => `
-        <section class="card">
-          <h1 class="title">Not found</h1>
-          <p class="muted">No page for route: <code>${route}</code></p>
-        </section>
-      `);
+    function renderTopic(topic){
+      if(!topic){
+        return `
+          <section class="card">
+            <h1 class="title">Not found</h1>
+            <p class="muted">This topic doesn’t exist.</p>
+          </section>
+        `;
+      }
 
-      document.getElementById("content").innerHTML = view();
+      const chips = [
+        topic.category ? `<span class="chip">${esc(topic.category)}</span>` : "",
+        (topic.applicable_models?.length ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>` : ""),
+        (topic.source_pages?.length ? `<span class="chip">Source pages: ${esc(topic.source_pages.join(", "))}</span>` : "")
+      ].filter(Boolean).join("");
+
+      const kv = (topic.data?.length)
+        ? `
+          <section class="card">
+            <h2 class="title">Key values</h2>
+            <div class="kv">
+              ${topic.data.map(kv => `
+                <div class="kv-row">
+                  <span>${esc(kv.label)}</span>
+                  <span>${esc(kv.value)}</span>
+                </div>
+              `).join("")}
+            </div>
+          </section>
+        `
+        : "";
+
+      const sections = (topic.sections?.length)
+        ? topic.sections.map(sec => `
+            <section class="card">
+              <h2 class="title">${esc(sec.heading)}</h2>
+              ${sec.text ? `<p class="muted">${esc(sec.text)}</p>` : ""}
+              ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}
+            </section>
+          `).join("")
+        : "";
+
+      return `
+        <section class="card">
+          <h1 class="title">${esc(topic.title)}</h1>
+          <p class="meta">${chips}</p>
+          ${topic.summary ? `<p class="muted">${esc(topic.summary)}</p>` : ""}
+        </section>
+        ${kv}
+        ${sections}
+      `;
+    }
+
+    function groupTopics(topics){
+      // group by category id, preserving the order in manual.categories
+      const groups = new Map();
+      for(const cat of manual.categories){
+        groups.set(cat.id, []);
+      }
+      for(const t of topics){
+        const key = t.category || "uncategorized";
+        if(!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(t);
+      }
+      return groups;
+    }
+
+    function renderNav(filterText=""){
+      const nav = document.getElementById("nav");
+      const q = filterText.trim().toLowerCase();
+
+      const filtered = manual.topics.filter(t => {
+        if(!q) return true;
+        return (
+          (t.title || "").toLowerCase().includes(q) ||
+          (t.summary || "").toLowerCase().includes(q) ||
+          (t.id || "").toLowerCase().includes(q)
+        );
+      });
+
+      const groups = groupTopics(filtered);
+      const categoryTitleById = new Map(manual.categories.map(c => [c.id, c.title]));
+
+      let html = "";
+      for(const [catId, items] of groups.entries()){
+        if(!items.length) continue;
+        html += `<div class="nav-group-title">${esc(categoryTitleById.get(catId) || catId)}</div>`;
+        html += items.map(t => `
+          <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
+            ${esc(t.title)}
+            ${t.summary ? `<small>${esc(t.summary)}</small>` : `<small>${esc(t.id)}</small>`}
+          </a>
+        `).join("");
+      }
+
+      nav.innerHTML = html || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
+      setActive(getRoute());
+    }
+
+    function render(){
+      const route = getRoute();
+      const topic = topicsById.get(route);
+      document.getElementById("content").innerHTML = renderTopic(topic);
       setActive(route);
     }
 
-    window.addEventListener("hashchange", render);
-    render();
+    async function init(){
+      const res = await fetch(DATA_URL, { cache: "no-store" });
+      if(!res.ok) throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
+      manual = await res.json();
+
+      topicsById = new Map((manual.topics || []).map(t => [t.id, t]));
+
+      document.getElementById("appTitle").textContent = `${manual.model} Micro Manual`;
+      document.getElementById("appSubtitle").textContent =
+        `${manual.source?.publisher || "Source"} • ${manual.source?.document || "PDF"} • ${manual.source?.region || ""}`.replace(/\s•\s$/,"");
+
+      // Build nav + initial render
+      renderNav("");
+
+      // Search
+      const search = document.getElementById("search");
+      search.addEventListener("input", () => renderNav(search.value));
+
+      // Route changes
+      window.addEventListener("hashchange", render);
+
+      // Default route if missing
+      if(!topicsById.has(getRoute())) location.hash = "#/home";
+      render();
+    }
+
+    init().catch(err => {
+      document.getElementById("content").innerHTML = `
+        <section class="card">
+          <h1 class="title">Error</h1>
+          <p class="muted">${esc(err.message)}</p>
+          <p class="muted">Make sure <code>data/manual.json</code> exists and GitHub Pages is serving it.</p>
+        </section>
+      `;
+    });
   </script>
 </body>
 </html>

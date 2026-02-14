@@ -18,7 +18,7 @@
       "title": "Welcome",
       "category": "home",
       "summary": "Pick a topic on the left.",
-      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "applicable_models": ["Gixxer 250 (Naked)"],
       "sections": [
         {
           "heading": "How this works",
@@ -35,7 +35,7 @@
       "title": "Engine Oil",
       "category": "fluids",
       "summary": "Oil type, standards, capacity, and basic steps.",
-      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "applicable_models": ["Gixxer 250 (Naked)"],
       "data": [
         { "label": "Oil type", "value": "TBD (from PDF)" },
         { "label": "Standard", "value": "TBD (from PDF)" },
@@ -58,7 +58,7 @@
       "title": "Tyre Pressure",
       "category": "tyres",
       "summary": "Front/rear pressures and load notes.",
-      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "applicable_models": ["Gixxer 250 (Naked)"],
       "data": [
         { "label": "Front", "value": "TBD (from PDF)" },
         { "label": "Rear", "value": "TBD (from PDF)" }
@@ -76,7 +76,7 @@
       "title": "Frame Cover",
       "category": "body",
       "summary": "How to open/remove the frame cover.",
-      "applicable_models": ["GSX250RL", "GSX250RLX"],
+      "applicable_models": ["Gixxer 250 (Naked)"],
       "sections": [
         { "heading": "Steps", "bullets": ["TBD", "TBD", "TBD"] }
       ],

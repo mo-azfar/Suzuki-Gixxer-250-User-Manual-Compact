@@ -96,7 +96,7 @@
       flex-direction:column;
       line-height:1.05;
       min-width:0;
-      flex:1;
+      flex: 1 1 auto;
     }
     .brand b{
       font-size:14px;
@@ -111,6 +111,74 @@
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+    }
+
+    /* ===== Topbar Search (NEW) ===== */
+    .topsearch{
+      position: relative;
+      flex: 0 1 420px;
+      min-width: 140px;
+    }
+    .topsearch input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 13px;
+      outline:none;
+    }
+    .topsearch input::placeholder{ color: rgba(159,176,195,.75); }
+
+    .searchdrop{
+      position:absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: rgba(18,22,28,.98);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      max-height: 55vh;
+      overflow:auto;
+      z-index: 85;
+      padding: 8px;
+    }
+    .searchdrop[hidden]{ display:none; }
+
+    .drop-item{
+      display:block;
+      padding:10px 10px;
+      border-radius:12px;
+      text-decoration:none;
+      color: var(--text);
+      border:1px solid transparent;
+      background: rgba(255,255,255,.02);
+      margin-bottom:8px;
+      cursor:pointer;
+    }
+    .drop-item:hover{
+      border-color: rgba(90,169,255,.35);
+      background: rgba(90,169,255,.10);
+    }
+    .drop-item small{
+      display:block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+    .drop-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:10px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:2px 6px;
+      border-radius:999px;
+      margin-top:6px;
     }
 
     main{
@@ -226,18 +294,6 @@
       letter-spacing:.6px;
       text-transform:uppercase;
     }
-    .drawer-search{
-      width:100%;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding:8px 10px;
-      font-size:12px;
-      outline:none;
-      margin:2px 0 10px;
-    }
-    .drawer-search::placeholder{ color: rgba(159,176,195,.75); }
     .drawer-list{ overflow:auto; padding-right:2px; }
 
     .nav-item{
@@ -264,19 +320,6 @@
       color: var(--muted);
       font-size:11px;
       margin-top:4px;
-    }
-
-    .result-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-size:10px;
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:2px 6px;
-      border-radius:999px;
-      margin-top:6px;
     }
 
     mark{
@@ -362,13 +405,12 @@
     }
 
     .icon{
-        width: 1em;
-        height: 1em;
-        vertical-align: -0.15em;
-        margin-right: .35em;
-        opacity: .95;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      margin-right: .35em;
+      opacity: .95;
     }
-
   </style>
 </head>
 
@@ -384,6 +426,12 @@
       <div class="brand">
         <b id="appTitle">Compact Manual</b>
         <span id="appSubtitle">Home</span>
+      </div>
+
+      <!-- NEW: Topbar search -->
+      <div class="topsearch" aria-label="Search">
+        <input id="topSearch" type="search" placeholder="Search…" autocomplete="off" />
+        <div id="topSearchDrop" class="searchdrop" hidden></div>
       </div>
     </header>
 
@@ -401,7 +449,7 @@
         </button>
       </div>
 
-      <input id="navSearch" class="drawer-search" type="search" placeholder="Search topics & content…" />
+      <!-- REMOVED: navSearch input -->
       <div id="nav" class="drawer-list"></div>
     </aside>
 
@@ -430,15 +478,18 @@
     const closeBtn = document.getElementById("closeBtn");
     const nav = document.getElementById("nav");
     const subtitle = document.getElementById("appSubtitle");
-    const navSearch = document.getElementById("navSearch");
+
+    // NEW: Top search refs
+    const topSearch = document.getElementById("topSearch");
+    const topSearchDrop = document.getElementById("topSearchDrop");
 
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxClose = document.getElementById("lightboxClose");
 
     const ICONS = {
-        warning: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 22h22L12 2z" fill="currentColor"/><path d="M12 8v6" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 17h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`,
-        info: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" fill="currentColor"/><path d="M12 10v7" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 7h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`
+      warning: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 22h22L12 2z" fill="currentColor"/><path d="M12 8v6" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 17h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`,
+      info: `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" fill="currentColor"/><path d="M12 10v7" stroke="#0f1318" stroke-width="2" stroke-linecap="round"/><path d="M12 7h.01" stroke="#0f1318" stroke-width="4" stroke-linecap="round"/></svg>`
     };
 
     function esc(s){
@@ -460,7 +511,6 @@
       drawer.classList.add("open");
       overlay.classList.add("show");
       menuBtn.setAttribute("aria-expanded", "true");
-      setTimeout(() => navSearch.focus(), 0);
     }
 
     function closeDrawer(){
@@ -469,38 +519,27 @@
       menuBtn.setAttribute("aria-expanded", "false");
     }
 
-    function renderMarkup(input){
-        let s = String(input ?? "");
-        s = esc(s);
-
-        // line breaks
-        s = s.replace(/\n/g, "<br>");
-
-        // inline code: `code`
-        s = s.replace(/`([^`]+?)`/g, "<code>$1</code>");
-
-        // underline: __text__
-        s = s.replace(/__(.+?)__/g, "<u>$1</u>");
-
-        // bold: **text**
-        s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-
-        // italic: *text*
-        // (avoid catching **bold** by requiring single asterisks)
-        s = s.replace(/(^|[^*])\*([^*]+?)\*(?!\*)/g, "$1<em>$2</em>");
-
-        // icons: [icon:name]
-        s = s.replace(/\[icon:([a-z0-9_-]+)\]/gi, (m, name) => {
-            const key = String(name).toLowerCase();
-            return ICONS[key] ? ICONS[key] : `<span class="muted">[icon:${esc(key)}]</span>`;
-        });
-
-        return s;
-    }
-
     overlay.addEventListener("click", closeDrawer);
     menuBtn.addEventListener("click", openDrawer);
     closeBtn.addEventListener("click", closeDrawer);
+
+    function renderMarkup(input){
+      let s = String(input ?? "");
+      s = esc(s);
+
+      s = s.replace(/\n/g, "<br>");
+      s = s.replace(/`([^`]+?)`/g, "<code>$1</code>");
+      s = s.replace(/__(.+?)__/g, "<u>$1</u>");
+      s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      s = s.replace(/(^|[^*])\*([^*]+?)\*(?!\*)/g, "$1<em>$2</em>");
+
+      s = s.replace(/\[icon:([a-z0-9_-]+)\]/gi, (m, name) => {
+        const key = String(name).toLowerCase();
+        return ICONS[key] ? ICONS[key] : `<span class="muted">[icon:${esc(key)}]</span>`;
+      });
+
+      return s;
+    }
 
     function openLightbox(src, alt=""){
       lightboxImg.src = src;
@@ -521,7 +560,7 @@
     window.addEventListener("keydown", (e) => {
       if(e.key === "Escape"){
         if(lightbox.classList.contains("show")) closeLightbox();
-        else closeDrawer();
+        else { closeDrawer(); hideTopSearchDrop(); }
       }
     });
 
@@ -556,54 +595,51 @@
     }
 
     function renderInlineImagesFromText(raw){
-        const s = String(raw ?? "");
-        const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
+      const s = String(raw ?? "");
+      const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
 
-        let out = "";
-        let last = 0;
-        let m;
+      let out = "";
+      let last = 0;
+      let m;
 
-        while((m = re.exec(s)) !== null){
-            // Text before image token
-            out += renderMarkup(s.slice(last, m.index));
+      while((m = re.exec(s)) !== null){
+        out += renderMarkup(s.slice(last, m.index));
 
-            const key = m[1];
-            const src = imgPathByToken(key);
+        const key = m[1];
+        const src = imgPathByToken(key);
 
-            if(src){
-                out += `
-                    <button
-                    type="button"
-                    class="imgref"
-                    data-imgkey="${esc(key)}"
-                    data-imgsrc="${esc(src)}"
-                    aria-label="Open image ${esc(key)}"
-                    title="Open image"
-                    >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"
-                        stroke="currentColor" stroke-width="2"/>
-                        <path d="M8 14l2-2 3 3 3-4 3 4"
-                        stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8.5 9.5h.01"
-                        stroke="currentColor" stroke-width="4"
-                        stroke-linecap="round"/>
-                    </svg>
-                    <span class="imgref-label">Image</span>
-                    </button>
-                `;
-            } else {
-                out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
-            }
-
-            last = m.index + m[0].length;
+        if(src){
+          out += `
+            <button
+              type="button"
+              class="imgref"
+              data-imgkey="${esc(key)}"
+              data-imgsrc="${esc(src)}"
+              aria-label="Open image ${esc(key)}"
+              title="Open image"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z"
+                  stroke="currentColor" stroke-width="2"/>
+                <path d="M8 14l2-2 3 3 3-4 3 4"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.5 9.5h.01"
+                  stroke="currentColor" stroke-width="4"
+                  stroke-linecap="round"/>
+              </svg>
+              <span class="imgref-label">Image</span>
+            </button>
+          `;
+        } else {
+          out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
         }
 
-        // Remaining text
-        out += renderMarkup(s.slice(last));
+        last = m.index + m[0].length;
+      }
 
-        return out;
+      out += renderMarkup(s.slice(last));
+      return out;
     }
 
     function wireInlineImageLightbox(){
@@ -622,43 +658,43 @@
     }
 
     function renderSectionsBlock(topic){
-        if(!topic.sections?.length) return "";
+      if(!topic.sections?.length) return "";
 
-        return `
-            <section class="card accordion" data-accordion>
-            ${topic.sections.map(sec => `
-                <details ${(sec.open === false) ? "" : "open"} data-acc-item>
-                <summary>
-                    <span class="sum-title">${renderMarkup(sec.heading)}</span>
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-                <div class="acc-body">
-                    ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
-                    ${(sec.bullets?.length)
-                    ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>`
-                    : ""}
-                </div>
-                </details>
-            `).join("")}
-            </section>
-        `;
+      return `
+        <section class="card accordion" data-accordion>
+          ${topic.sections.map((sec, idx) => `
+            <details ${(sec.open === false) ? "" : "open"} data-acc-item data-sec-index="${idx}">
+              <summary>
+                <span class="sum-title">${renderMarkup(sec.heading)}</span>
+                <span class="chev" aria-hidden="true"></span>
+              </summary>
+              <div class="acc-body">
+                ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
+                ${(sec.bullets?.length)
+                  ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>`
+                  : ""}
+              </div>
+            </details>
+          `).join("")}
+        </section>
+      `;
     }
 
     function renderDataBlock(topic){
-        if(!topic.data?.length) return "";
+      if(!topic.data?.length) return "";
 
-        return `
-            <section class="card">
-            <div class="kv">
-                ${topic.data.map(kv => `
-                <div class="kv-row">
-                    <span>${renderMarkup(kv.label)}</span>
-                    <span>${renderMarkup(kv.value)}</span>
-                </div>
-                `).join("")}
-            </div>
-            </section>
-        `;
+      return `
+        <section class="card">
+          <div class="kv">
+            ${topic.data.map(kv => `
+              <div class="kv-row">
+                <span>${renderMarkup(kv.label)}</span>
+                <span>${renderMarkup(kv.value)}</span>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+      `;
     }
 
     function renderTopic(topic){
@@ -680,9 +716,9 @@
 
       const header = `
         <section class="card">
-            <h1 class="title">${esc(topic.title)}</h1>
-            <p class="meta">${chips}</p>
-            ${topic.summary ? `<p class="muted">${renderMarkup(topic.summary)}</p>` : ""}
+          <h1 class="title">${esc(topic.title)}</h1>
+          <p class="meta">${chips}</p>
+          ${topic.summary ? `<p class="muted">${renderMarkup(topic.summary)}</p>` : ""}
         </section>
       `;
 
@@ -720,7 +756,13 @@
     function topicSearchText(topic){
       const parts = [];
       parts.push(topic.title, topic.summary);
-      if(Array.isArray(topic.data)) for(const kv of topic.data) parts.push(kv.label, kv.value);
+
+      // data
+      if(Array.isArray(topic.data)){
+        for(const kv of topic.data) parts.push(kv.label, kv.value);
+      }
+
+      // sections
       if(Array.isArray(topic.sections)){
         for(const sec of topic.sections){
           parts.push(sec.heading);
@@ -748,20 +790,16 @@
       return esc(snip).replace(re, m => `<mark>${esc(m)}</mark>`);
     }
 
-    function renderNavList(items, route, qStr=""){
+    function renderNavList(items, route){
       nav.innerHTML = items.map(item => {
         const t = item.topic;
-        const hint = item.hint || t.summary || "";
-        const pill = item.kind ? `<span class="result-pill">${esc(item.kind)}</span>` : "";
-        const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
         return `
           <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
             ${esc(t.title)}
-            <small>${small}</small>
-            ${pill}
+            ${t.summary ? `<small>${esc(t.summary)}</small>` : ""}
           </a>
         `;
-      }).join("") || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
+      }).join("") || `<p class="muted" style="padding:8px 6px;">No topics.</p>`;
 
       setActive(route);
       nav.querySelectorAll("a.nav-item").forEach(a => a.addEventListener("click", () => closeDrawer()));
@@ -769,35 +807,156 @@
 
     function renderNavDefault(){
       const route = getRoute();
-      const items = orderedTopics.map(t => ({ topic:t, hint:(t.summary||""), kind:"" }));
-      renderNavList(items, route, "");
+      const items = orderedTopics.map(t => ({ topic:t }));
+      renderNavList(items, route);
     }
 
-    function renderNavSearch(qRaw){
-      const route = getRoute();
+    /* ===== Top Search Logic (NEW) ===== */
+
+    function hideTopSearchDrop(){
+      topSearchDrop.hidden = true;
+      topSearchDrop.innerHTML = "";
+    }
+
+    function openSectionByIndex(sectionIndex){
+      if(sectionIndex == null) return;
+
+      const detailsList = Array.from(document.querySelectorAll("[data-accordion] details[data-acc-item]"));
+      const target = detailsList[sectionIndex];
+      if(!target) return;
+
+      // open target, close others (single open)
+      detailsList.forEach(d => d.open = (d === target));
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function findMatches(qRaw){
       const q = qRaw.trim().toLowerCase();
-      if(!q){ renderNavDefault(); return; }
+      if(!q) return [];
 
       const results = [];
-      for(const t of orderedTopics){
-        const hay = topicSearchText(t);
-        if(!hay.toLowerCase().includes(q)) continue;
 
+      for(const t of orderedTopics){
         const titleSummary = [t.title, t.summary].filter(Boolean).join(" — ");
         if(titleSummary.toLowerCase().includes(q)){
-          results.push({ topic:t, hint:titleSummary, kind:"title/summary" });
-        }else{
-          results.push({ topic:t, hint: makeSnippet(hay, q) || t.summary || "", kind:"content" });
+          results.push({ topic:t, kind:"title/summary", hint:titleSummary, sectionIndex:null });
+          continue;
+        }
+
+        // sections: pick first matching section index
+        if(Array.isArray(t.sections)){
+          for(let i=0;i<t.sections.length;i++){
+            const sec = t.sections[i];
+            const hay = [
+              sec.heading,
+              sec.text,
+              ...(Array.isArray(sec.bullets) ? sec.bullets : [])
+            ].filter(Boolean).join("\n");
+
+            if(hay.toLowerCase().includes(q)){
+              results.push({
+                topic: t,
+                kind: "section",
+                hint: makeSnippet(hay, q) || sec.heading || t.summary || "",
+                sectionIndex: i
+              });
+              break;
+            }
+          }
+          if(results[results.length-1]?.topic?.id === t.id) continue;
+        }
+
+        // data
+        if(Array.isArray(t.data)){
+          const hay = t.data.map(kv => `${kv.label}: ${kv.value}`).join("\n");
+          if(hay.toLowerCase().includes(q)){
+            results.push({
+              topic:t,
+              kind:"data",
+              hint: makeSnippet(hay, q) || t.summary || "",
+              sectionIndex: null
+            });
+          }
         }
       }
 
-      results.sort((a,b) => {
-        const w = x => x.kind === "title/summary" ? 0 : 1;
-        return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
-      });
-
-      renderNavList(results, route, q);
+      const weight = (k) => k === "title/summary" ? 0 : (k === "section" ? 1 : 2);
+      results.sort((a,b) => weight(a.kind) - weight(b.kind) || a.topic.title.localeCompare(b.topic.title));
+      return results.slice(0, 12);
     }
+
+    function showTopSearchDrop(items, qStr){
+      if(!items.length){
+        hideTopSearchDrop();
+        return;
+      }
+
+      topSearchDrop.hidden = false;
+      topSearchDrop.innerHTML = items.map(r => {
+        const hint = r.hint || r.topic.summary || "";
+        const small = qStr ? highlightSnippet(String(hint), qStr.trim()) : esc(hint);
+        const pill = `<span class="drop-pill">${esc(r.kind)}</span>`;
+        const secAttr = (r.sectionIndex != null) ? ` data-sec="${r.sectionIndex}"` : "";
+
+        return `
+          <div class="drop-item" role="option" tabindex="0" data-topic="${esc(r.topic.id)}"${secAttr}>
+            ${esc(r.topic.title)}
+            <small>${small}</small>
+            ${pill}
+          </div>
+        `;
+      }).join("");
+    }
+
+    // click outside closes dropdown
+    document.addEventListener("click", (e) => {
+      if(e.target.closest(".topsearch")) return;
+      hideTopSearchDrop();
+    });
+
+    topSearchDrop.addEventListener("click", (e) => {
+      const item = e.target.closest(".drop-item");
+      if(!item) return;
+
+      const topicId = item.dataset.topic;
+      const sec = item.dataset.sec != null ? Number(item.dataset.sec) : null;
+
+      location.hash = `#/${topicId}`;
+      hideTopSearchDrop();
+      topSearch.blur();
+
+      setTimeout(() => openSectionByIndex(sec), 0);
+    });
+
+    topSearch.addEventListener("input", () => {
+      const q = topSearch.value;
+      const items = findMatches(q);
+      showTopSearchDrop(items, q);
+    });
+
+    topSearch.addEventListener("focus", () => {
+      const q = topSearch.value;
+      if(q.trim()){
+        showTopSearchDrop(findMatches(q), q);
+      }
+    });
+
+    topSearch.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){ hideTopSearchDrop(); return; }
+      if(e.key !== "Enter") return;
+
+      const first = topSearchDrop.querySelector(".drop-item");
+      if(!first) return;
+
+      const topicId = first.dataset.topic;
+      const sec = first.dataset.sec != null ? Number(first.dataset.sec) : null;
+
+      location.hash = `#/${topicId}`;
+      hideTopSearchDrop();
+      topSearch.blur();
+
+      setTimeout(() => openSectionByIndex(sec), 0);
+    });
 
     async function init(){
       const res = await fetch(DATA_URL, { cache:"no-store" });
@@ -813,15 +972,16 @@
       if(!location.hash) location.hash = "#/home";
 
       renderNavDefault();
-      navSearch.addEventListener("input", () => renderNavSearch(navSearch.value));
 
       window.addEventListener("hashchange", () => {
         render();
         setActive(getRoute());
+        hideTopSearchDrop();
       });
 
       render();
       closeDrawer();
+      hideTopSearchDrop();
     }
 
     init().catch(err => {

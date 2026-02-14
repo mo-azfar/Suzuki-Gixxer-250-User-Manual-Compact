@@ -8,7 +8,14 @@
         "img5": "data/front-seat-removal.png",
         "img6": "data/left-frame-cover-removal-1.png",
         "img7": "data/left-frame-cover-removal-2.png",
-        "img8": "data/right-frame-cover-removal-1.png"
+        "img8": "data/right-frame-cover-removal-1.png",
+        "img9": "data/battery-removal-1.png",
+        "img10": "data/battery-removal-2.png",
+        "img11": "data/air-filter-removal-1.png",
+        "img12": "data/air-filter-removal-2.png",
+        "img13": "data/fuse.png",
+        "img14": "data/maintenance-schedule-1.png",
+        "img15": "data/maintenance-schedule-2.png"
     },
     "topics": [
         {
@@ -211,8 +218,8 @@
             ]
         },
         {
-            "id": "adjusting",
-            "title": "Adjusting",
+            "id": "adjustment",
+            "title": "Adjustment",
             "summary": "adjusting headlight beam, body parts removal",
             "applicable_models": [
                 "Gixxer 250"
@@ -261,6 +268,95 @@
                         "Remove seat lock and front seat.",
                         "Remove 3 bolts (green) securing the right frame cover.",
                         "Remove 1 fastener clip (blue) securing the right frame cover. [IMG#img8]"
+                    ]
+                },
+                {
+                    "heading": "6. Battery Removal",
+                    "bullets": [
+                        "Remove seat lock, front seat and left frame cover.",
+                        "Disconnect the negative terminal first, then disconnect the positive terminal.",
+                        "Remove battery band (1) and bolt (2). [IMG#img9]",
+                        "Pull the rear frame cover (3) and pull out the battery. [IMG#img10]"
+                    ]
+                },
+                {
+                    "heading": "7. Air Filter Removal",
+                    "bullets": [
+                        "Remove seat lock, front seat and left frame cover.",
+                        "Remove the screws and air cleaner cap (1). [IMG#img11]",
+                        "Pull out the air filter element and replace if necessary. [IMG#img12]"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "fuse",
+            "title": "Fuse",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                },
+                {
+                    "type": "data"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Fuse Location",
+                    "bullets": [
+                        "Fuse are located under front seat. Remove seat lock and front seat to access the fuse box",
+                        "There are 3 spare fuses provided in the fuse box ( 20A, 15A and 10A). [IMG#img13]"
+                    ]
+                }
+            ],
+            "data": [
+                {
+                    "label": "20A MAIN Fuse",
+                    "value": "Protects all electrical circuits"
+                },
+                {
+                    "label": "15A SUB Fuse",
+                    "value": "Protect fuel indicator, oxygen sensor, solenoid, fuel pump, ignition coil, headlight, position light, license plate light, taillight, stop light, turn signal light, horn, speedometer, horn, starter relay, starter sub relay, ECM and ABS"
+                },
+                {
+                    "label": "10A SIGNAL Fuse",
+                    "value": "Protects speedometer, turn signal light, stop light, taillight, license plate light, position light and headlight beams."
+                },
+                {
+                    "label": "10A FAN Fuse",
+                    "value": "Protects the cooling fan relay"
+                },
+                {
+                    "label": "10A ABS-M Fuse",
+                    "value": "Protects the ABS system"
+                },
+                {
+                    "label": "10A ABS-V Fuse",
+                    "value": "Protects the ABS system"
+                }
+            ]
+        },
+        {
+            "id": "maintenance-schedule",
+            "title": "Maintenance Schedule",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Maintenance Schedule",
+                    "bullets": [
+                        "NOTE:  I= Inspect and clean, adjust, replace or lubricate as necessary; R= Replace; T = Tighten. [IMG#img14] [IMG#img15]"
                     ]
                 }
             ]

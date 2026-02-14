@@ -1,398 +1,358 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Suzuki Gixxer 250 User Manual (Compact)</title>
 
   <style>
-    :root {
-      --bg: #0b0d10;
-      --panel2: #0f1318;
-      --text: #e7eef7;
-      --muted: #9fb0c3;
-      --accent: #5aa9ff;
-      --phoneW: 390px;
-      --phoneH: 844px;
-      --radius: 18px;
-      --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-      --drawerW: 270px;
+    :root{
+      --bg:#0b0d10;
+      --panel2:#0f1318;
+      --text:#e7eef7;
+      --muted:#9fb0c3;
+      --accent:#5aa9ff;
+
+      --phoneW:390px;
+      --phoneH:844px;
+
+      --radius:18px;
+      --shadow:0 12px 40px rgba(0,0,0,.45);
+      --drawerW:270px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
-    body {
-      margin: 0;
-      background: radial-gradient(1200px 800px at 30% 10%,
-          #101827 0%,
-          var(--bg) 55%,
-          #07080a 100%);
-      color: var(--text);
+    /* Desktop framing (nice centered phone) */
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 30% 10%, #101827 0%, var(--bg) 55%, #07080a 100%);
+      color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
     }
 
-    .phone {
-      width: min(100%, var(--phoneW));
-      height: min(100vh - 32px, var(--phoneH));
+    .phone{
+      width:min(100%, var(--phoneW));
+      height:min(calc(100vh - 32px), var(--phoneH)); /* desktop-friendly */
       background: var(--panel2);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border:1px solid rgba(255,255,255,.06);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      position:relative;
     }
 
-    /* TOP BAR - now clearly visible */
-    .topbar {
+    /* --- FIX FOR MOBILE CLIPPING --- */
+    @media (max-width: 520px){
+      body{
+        padding:0;
+        align-items:stretch;
+        justify-content:stretch;
+      }
+      .phone{
+        width:100vw;
+        height:100dvh;            /* dynamic viewport height (correct on mobile) */
+        height:100svh;            /* fallback */
+        border-radius:0;
+        border:none;
+        box-shadow:none;
+      }
+    }
+
+    .topbar{
       position: sticky;
       top: 0;
-      z-index: 40;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0 10px;
-      background: rgba(15, 19, 24, .92);
+      z-index: 60;
+
+      height:56px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 10px;
+
+      /* solid enough to be visible */
+      background: rgba(15,19,24,.92);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    /* Stronger buttons */
-    .btn-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(90, 169, 255, 0.55);
-      background: rgba(90, 169, 255, 0.18);
+    .btn-icon{
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(90,169,255,.55);
+      background: rgba(90,169,255,.18);
       color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
       -webkit-tap-highlight-color: transparent;
+      flex: 0 0 auto;
+    }
+    .btn-icon:active{ transform: translateY(1px); }
+    .btn-icon:hover{
+      border-color: rgba(90,169,255,.75);
+      background: rgba(90,169,255,.26);
     }
 
-    .btn-icon:hover {
-      border-color: rgba(90, 169, 255, 0.75);
-      background: rgba(90, 169, 255, 0.26);
+    .brand{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      min-width:0;
+      flex:1;
+    }
+    .brand b{
+      font-size:14px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand span{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .btn-icon:active { transform: translateY(1px); }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-      min-width: 0;
-      flex: 1;
+    main{
+      flex:1;
+      padding:14px;
+      overflow:auto;
     }
 
-    .brand b {
-      font-size: 14px;
-      letter-spacing: 0.2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:14px;
+      margin-bottom:12px;
+    }
+    .title{ font-size:16px; margin:0 0 8px; letter-spacing:.2px; }
+    .meta{ margin:0 0 10px; color:var(--muted); font-size:12px; }
+
+    .chip{
+      display:inline-flex; align-items:center;
+      padding:4px 8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:11px;
+      margin-right:6px;
+      margin-bottom:6px;
     }
 
-    .brand span {
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .kv{ display:grid; gap:8px; margin-top:10px; }
+    .kv-row{
+      display:flex; justify-content:space-between; gap:10px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      font-size:13px;
     }
-
-    main {
-      flex: 1;
-      padding: 14px;
-      overflow: auto;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-
-    .title { font-size: 16px; margin: 0 0 8px; letter-spacing: 0.2px; }
-    .meta { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      font-size: 11px;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    .kv { display: grid; gap: 8px; margin-top: 10px; }
-
-    .kv-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.02);
-      font-size: 13px;
-    }
-
-    .kv-row span:first-child { color: var(--muted); }
-    .muted { color: var(--muted); }
-    ul { margin-top: 5px; }
-    li { margin: 6px 0; }
+    .kv-row span:first-child{ color:var(--muted); }
+    .muted{ color:var(--muted); }
+    ul{ margin-top:5px; padding-left: 18px; }
+    li{ margin:6px 0; }
 
     /* Content accordion */
-    .accordion details {
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 14px;
-      margin-bottom: 10px;
-      overflow: hidden;
+    .accordion details{
+      border:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      border-radius:14px;
+      margin-bottom:10px;
+      overflow:hidden;
     }
-
-    .accordion summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 12px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      user-select: none;
+    .accordion summary{
+      list-style:none;
+      cursor:pointer;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      user-select:none;
     }
-
-    .accordion summary::-webkit-details-marker { display: none; }
-    .accordion .sum-title { font-size: 14px; letter-spacing: 0.2px; }
-
-    .accordion .chev {
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid rgba(159, 176, 195, 0.9);
-      border-bottom: 2px solid rgba(159, 176, 195, 0.9);
+    .accordion summary::-webkit-details-marker{ display:none; }
+    .accordion .sum-title{ font-size:14px; letter-spacing:.2px; }
+    .accordion .chev{
+      width:10px; height:10px;
+      border-right:2px solid rgba(159,176,195,.9);
+      border-bottom:2px solid rgba(159,176,195,.9);
       transform: rotate(-45deg);
-      transition: transform 0.15s ease;
-      flex: 0 0 auto;
-      margin-left: 6px;
+      transition: transform .15s ease;
+      flex:0 0 auto;
+      margin-left:6px;
     }
-
-    .accordion details[open] .chev { transform: rotate(45deg); }
-    .accordion .acc-body { padding: 0 12px 12px; color: var(--text); }
+    .accordion details[open] .chev{ transform: rotate(45deg); }
+    .accordion .acc-body{ padding:0 12px 12px; color:var(--text); }
 
     /* Drawer */
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.18s ease;
-      z-index: 45;
+    .overlay{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.45);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index: 70;
     }
+    .overlay.show{ opacity:1; pointer-events:auto; }
 
-    .overlay.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .drawer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
+    .drawer{
+      position:absolute;
+      top:0; left:0; bottom:0;
       width: var(--drawerW);
-      background: rgba(18, 22, 28, 0.98);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(18,22,28,.98);
+      border-right:1px solid rgba(255,255,255,.06);
       transform: translateX(-102%);
-      transition: transform 0.18s ease;
-      display: flex;
-      flex-direction: column;
-      padding: 12px 10px;
-      z-index: 55;
+      transition: transform .18s ease;
+      display:flex;
+      flex-direction:column;
+      padding:12px 10px;
+      z-index: 80;
+    }
+    .drawer.open{ transform: translateX(0); }
+
+    .drawer-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:4px 2px 10px;
+    }
+    .drawer-title{
+      font-size:11px;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.6px;
+      text-transform:uppercase;
     }
 
-    .drawer.open { transform: translateX(0); }
-
-    .drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 4px 2px 10px;
-    }
-
-    .drawer-title {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-    }
-
-    .drawer-search {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
+    .drawer-search{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
       color: var(--text);
-      padding: 8px 10px;
-      font-size: 12px;
-      outline: none;
-      margin: 2px 0 10px;
+      padding:8px 10px;
+      font-size:12px;
+      outline:none;
+      margin:2px 0 10px;
+    }
+    .drawer-search::placeholder{ color: rgba(159,176,195,.75); }
+
+    .drawer-list{
+      overflow:auto;
+      padding-right:2px;
     }
 
-    .drawer-search::placeholder { color: rgba(159, 176, 195, 0.75); }
-
-    .drawer-list {
-      overflow: auto;
-      padding-right: 2px;
+    .nav-item{
+      display:block;
+      padding:10px 10px;
+      border-radius:12px;
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      border:1px solid transparent;
+      margin-bottom:8px;
+      background: rgba(255,255,255,.02);
+    }
+    .nav-item:hover{
+      border-color: rgba(90,169,255,.35);
+      background: rgba(90,169,255,.10);
+    }
+    .nav-item.active{
+      border-color: rgba(90,169,255,.55);
+      background: rgba(90,169,255,.18);
+    }
+    .nav-item small{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      margin-top:4px;
     }
 
-    .nav-item {
-      display: block;
-      padding: 10px 10px;
-      border-radius: 12px;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 13px;
-      border: 1px solid transparent;
-      margin-bottom: 8px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .nav-item:hover {
-      border-color: rgba(90, 169, 255, 0.35);
-      background: rgba(90, 169, 255, 0.1);
-    }
-
-    .nav-item.active {
-      border-color: rgba(90, 169, 255, 0.55);
-      background: rgba(90, 169, 255, 0.18);
-    }
-
-    .nav-item small {
-      display: block;
+    .result-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:10px;
       color: var(--muted);
-      font-size: 11px;
-      margin-top: 4px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:2px 6px;
+      border-radius:999px;
+      margin-top:6px;
     }
 
-    /* Search result styling */
-    .result-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10px;
-      color: var(--muted);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.03);
-      padding: 2px 6px;
-      border-radius: 999px;
-      margin-top: 6px;
-    }
-
-    mark {
-      background: rgba(90, 169, 255, 0.22);
+    mark{
+      background: rgba(90,169,255,.22);
       color: var(--text);
       padding: 0 2px;
       border-radius: 4px;
     }
 
     /* Lightbox */
-    .lightbox-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, .65);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 70;
+    .lightbox-overlay{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index: 90;
     }
-
-    .lightbox-overlay.show { display: flex; }
-
-    .lightbox-panel {
-      position: relative;
+    .lightbox-overlay.show{ display:flex; }
+    .lightbox-panel{
+      position:relative;
       max-width: 80vw;
       max-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
-
-    .lightbox-img {
+    .lightbox-img{
       max-width: 80vw;
       max-height: 80vh;
-      width: auto;
-      height: auto;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, .10);
-      background: rgba(255, 255, 255, .02);
+      width:auto;
+      height:auto;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
     }
-
-    .lightbox-close {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background: rgba(18, 22, 28, .95);
+    .lightbox-close{
+      position:absolute;
+      top:-10px;
+      right:-10px;
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(18,22,28,.95);
       color: var(--text);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
-
-    .lightbox-close:hover {
-      border-color: rgba(90, 169, 255, .35);
-      background: rgba(90, 169, 255, .10);
+    .lightbox-close:hover{
+      border-color: rgba(90,169,255,.35);
+      background: rgba(90,169,255,.10);
     }
-
-    /* FAILSAFE: Floating Menu Button (always visible) */
-    .fab-menu {
-      position: absolute;
-      left: 14px;
-      top: 14px;
-      z-index: 65; /* above content and topbar */
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      border: 1px solid rgba(90, 169, 255, 0.75);
-      background: rgba(18, 22, 28, .95);
-      color: var(--text);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, .55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .fab-menu:active { transform: translateY(1px); }
-    .drawer.open ~ .fab-menu { display: none; } /* optional */
   </style>
 </head>
 
@@ -440,13 +400,6 @@
         <img id="lightboxImg" class="lightbox-img" alt="" />
       </div>
     </div>
-
-    <!-- Floating menu (failsafe) -->
-    <button id="fabMenuBtn" class="fab-menu" aria-label="Open menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
-      </svg>
-    </button>
   </div>
 
   <script>
@@ -468,109 +421,96 @@
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxClose = document.getElementById("lightboxClose");
 
-    const fabMenuBtn = document.getElementById("fabMenuBtn");
-
-    function esc(s) {
+    function esc(s){
       return String(s ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
     }
 
-    function getRoute() {
+    function getRoute(){
       const hash = location.hash || "#/home";
       const route = hash.replace(/^#\//, "");
       return route || "home";
     }
 
-    // ---------- Drawer ----------
-    function openDrawer() {
+    // Drawer
+    function openDrawer(){
       drawer.classList.add("open");
       overlay.classList.add("show");
       menuBtn.setAttribute("aria-expanded", "true");
       setTimeout(() => navSearch.focus(), 0);
     }
-
-    function closeDrawer() {
+    function closeDrawer(){
       drawer.classList.remove("open");
       overlay.classList.remove("show");
       menuBtn.setAttribute("aria-expanded", "false");
     }
-
-    function toggleDrawer() {
+    function toggleDrawer(){
       drawer.classList.contains("open") ? closeDrawer() : openDrawer();
     }
 
     overlay.addEventListener("click", closeDrawer);
     menuBtn.addEventListener("click", toggleDrawer);
     closeBtn.addEventListener("click", closeDrawer);
-    fabMenuBtn.addEventListener("click", openDrawer);
 
-    // ---------- Lightbox ----------
-    function openLightbox(src, alt = "") {
+    // Lightbox
+    function openLightbox(src, alt=""){
       lightboxImg.src = src;
       lightboxImg.alt = alt || "Image";
       lightbox.classList.add("show");
       lightbox.setAttribute("aria-hidden", "false");
     }
-
-    function closeLightbox() {
+    function closeLightbox(){
       lightbox.classList.remove("show");
       lightbox.setAttribute("aria-hidden", "true");
       lightboxImg.src = "";
       lightboxImg.alt = "";
     }
 
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
+    lightbox.addEventListener("click", (e) => { if(e.target === lightbox) closeLightbox(); });
     lightboxClose.addEventListener("click", closeLightbox);
 
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (lightbox.classList.contains("show")) closeLightbox();
+      if(e.key === "Escape"){
+        if(lightbox.classList.contains("show")) closeLightbox();
         else closeDrawer();
       }
     });
 
-    // ---------- Active nav ----------
-    function setActive(route) {
-      document.querySelectorAll(".nav-item").forEach((a) => {
+    function setActive(route){
+      document.querySelectorAll(".nav-item").forEach(a => {
         a.classList.toggle("active", a.dataset.route === route);
       });
     }
 
-    // ---------- Rendering order ----------
-    function getRenderPlan(topic) {
+    function getRenderPlan(topic){
       const hasSections = Array.isArray(topic.sections) && topic.sections.length > 0;
       const hasData = Array.isArray(topic.data) && topic.data.length > 0;
 
-      if (Array.isArray(topic.blocks) && topic.blocks.length) {
+      if(Array.isArray(topic.blocks) && topic.blocks.length){
         const plan = topic.blocks
-          .map((b) => b?.type)
-          .filter((t) => (t === "sections" && hasSections) || (t === "data" && hasData));
-
-        if (hasSections && !plan.includes("sections")) plan.push("sections");
-        if (hasData && !plan.includes("data")) plan.push("data");
+          .map(b => b?.type)
+          .filter(t => (t === "sections" && hasSections) || (t === "data" && hasData));
+        if(hasSections && !plan.includes("sections")) plan.push("sections");
+        if(hasData && !plan.includes("data")) plan.push("data");
         return plan;
       }
 
       const plan = [];
-      if (hasSections) plan.push("sections");
-      if (hasData) plan.push("data");
+      if(hasSections) plan.push("sections");
+      if(hasData) plan.push("data");
       return plan;
     }
 
-    // ---------- Inline images via [IMG#KEY] ----------
-    function imgPathByToken(token) {
+    function imgPathByToken(token){
       const key = String(token || "").trim();
       return manual?.images?.[key] || "";
     }
 
-    function renderInlineImagesFromText(raw) {
+    function renderInlineImagesFromText(raw){
       const s = String(raw ?? "");
       const re = /\[IMG#([A-Za-z0-9_-]+)\]/g;
 
@@ -578,14 +518,12 @@
       let last = 0;
       let m;
 
-      while ((m = re.exec(s)) !== null) {
-        const before = s.slice(last, m.index);
-        out += esc(before);
-
+      while((m = re.exec(s)) !== null){
+        out += esc(s.slice(last, m.index));
         const key = m[1];
         const src = imgPathByToken(key);
 
-        if (src) {
+        if(src){
           out += `
             <div style="margin:10px 0;">
               <img
@@ -598,40 +536,34 @@
               />
             </div>
           `;
-        } else {
+        }else{
           out += `<span class="muted">[missing image: ${esc(key)}]</span>`;
         }
-
         last = m.index + m[0].length;
       }
-
       out += esc(s.slice(last));
       return out;
     }
 
-    function wireInlineImageLightbox() {
-      document.querySelectorAll("img.inline-img[data-fullsrc]").forEach((img) => {
-        img.addEventListener("click", () => {
-          openLightbox(img.dataset.fullsrc, img.alt || "");
-        });
+    function wireInlineImageLightbox(){
+      document.querySelectorAll("img.inline-img[data-fullsrc]").forEach(img => {
+        img.addEventListener("click", () => openLightbox(img.dataset.fullsrc, img.alt || ""));
       });
     }
 
-    function renderSectionsBlock(topic) {
-      if (!topic.sections?.length) return "";
+    function renderSectionsBlock(topic){
+      if(!topic.sections?.length) return "";
       return `
         <section class="card accordion" data-accordion>
           ${topic.sections.map(sec => `
-            <details ${sec.open === false ? "" : "open"} data-acc-item>
+            <details ${(sec.open === false) ? "" : "open"} data-acc-item>
               <summary>
                 <span class="sum-title">${esc(sec.heading)}</span>
                 <span class="chev" aria-hidden="true"></span>
               </summary>
               <div class="acc-body">
                 ${sec.text ? `<p class="muted">${renderInlineImagesFromText(sec.text)}</p>` : ""}
-                ${(sec.bullets?.length)
-                  ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>`
-                  : ""}
+                ${(sec.bullets?.length) ? `<ul>${sec.bullets.map(b => `<li>${renderInlineImagesFromText(b)}</li>`).join("")}</ul>` : ""}
               </div>
             </details>
           `).join("")}
@@ -639,8 +571,8 @@
       `;
     }
 
-    function renderDataBlock(topic) {
-      if (!topic.data?.length) return "";
+    function renderDataBlock(topic){
+      if(!topic.data?.length) return "";
       return `
         <section class="card">
           <div class="kv">
@@ -655,8 +587,8 @@
       `;
     }
 
-    function renderTopic(topic) {
-      if (!topic) {
+    function renderTopic(topic){
+      if(!topic){
         subtitle.textContent = "Not found";
         return `
           <section class="card">
@@ -669,9 +601,7 @@
       subtitle.textContent = topic.title || topic.id;
 
       const chips = [
-        topic.applicable_models?.length
-          ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>`
-          : ""
+        (topic.applicable_models?.length ? `<span class="chip">Models: ${esc(topic.applicable_models.join(", "))}</span>` : "")
       ].filter(Boolean).join("");
 
       const header = `
@@ -683,31 +613,28 @@
       `;
 
       const plan = getRenderPlan(topic);
-      const blocksHtml = plan.map(t => {
-        if (t === "sections") return renderSectionsBlock(topic);
-        if (t === "data") return renderDataBlock(topic);
+      const blocks = plan.map(t => {
+        if(t === "sections") return renderSectionsBlock(topic);
+        if(t === "data") return renderDataBlock(topic);
         return "";
       }).join("");
 
-      return header + blocksHtml;
+      return header + blocks;
     }
 
-    // Content accordion: single-open inside each accordion
-    function wireContentAccordions() {
-      document.querySelectorAll("[data-accordion]").forEach((acc) => {
+    function wireContentAccordions(){
+      document.querySelectorAll("[data-accordion]").forEach(acc => {
         const items = Array.from(acc.querySelectorAll("details[data-acc-item]"));
-        items.forEach((d) => {
+        items.forEach(d => {
           d.addEventListener("toggle", () => {
-            if (!d.open) return;
-            items.forEach((other) => {
-              if (other !== d) other.open = false;
-            });
+            if(!d.open) return;
+            items.forEach(other => { if(other !== d) other.open = false; });
           });
         });
       });
     }
 
-    function render() {
+    function render(){
       const route = getRoute();
       const topic = topicsById.get(route);
       document.getElementById("content").innerHTML = renderTopic(topic);
@@ -716,109 +643,87 @@
       wireInlineImageLightbox();
     }
 
-    // ---------- Search ----------
-    function topicSearchText(topic) {
+    function topicSearchText(topic){
       const parts = [];
       parts.push(topic.title, topic.summary);
-
-      if (Array.isArray(topic.data)) {
-        for (const kv of topic.data) parts.push(kv.label, kv.value);
-      }
-      if (Array.isArray(topic.sections)) {
-        for (const sec of topic.sections) {
+      if(Array.isArray(topic.data)) for(const kv of topic.data) parts.push(kv.label, kv.value);
+      if(Array.isArray(topic.sections)){
+        for(const sec of topic.sections){
           parts.push(sec.heading);
-          if (Array.isArray(sec.bullets)) parts.push(...sec.bullets);
-          if (sec.text) parts.push(sec.text);
+          if(Array.isArray(sec.bullets)) parts.push(...sec.bullets);
+          if(sec.text) parts.push(sec.text);
         }
       }
       return parts.filter(Boolean).join(" \n ");
     }
 
-    function makeSnippet(text, q) {
+    function makeSnippet(text, q){
       const lower = text.toLowerCase();
       const idx = lower.indexOf(q);
-      if (idx === -1) return "";
+      if(idx === -1) return "";
       const start = Math.max(0, idx - 35);
       const end = Math.min(text.length, idx + q.length + 45);
       let snip = text.slice(start, end).trim();
-      if (start > 0) snip = "…" + snip;
-      if (end < text.length) snip = snip + "…";
+      if(start > 0) snip = "…" + snip;
+      if(end < text.length) snip = snip + "…";
       return snip;
     }
 
-    function highlightSnippet(snip, q) {
+    function highlightSnippet(snip, q){
       const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
-      return esc(snip).replace(re, (m) => `<mark>${esc(m)}</mark>`);
+      return esc(snip).replace(re, m => `<mark>${esc(m)}</mark>`);
     }
 
-    function renderNavList(items, route, qStr = "") {
-      nav.innerHTML =
-        items.map((item) => {
-          const t = item.topic;
-          const hint = item.hint || t.summary || "";
-          const pill = item.kind ? `<span class="result-pill">${esc(item.kind)}</span>` : "";
-          const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
-
-          return `
-            <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
-              ${esc(t.title)}
-              <small>${small}</small>
-              ${pill}
-            </a>
-          `;
-        }).join("") || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
+    function renderNavList(items, route, qStr=""){
+      nav.innerHTML = items.map(item => {
+        const t = item.topic;
+        const hint = item.hint || t.summary || "";
+        const pill = item.kind ? `<span class="result-pill">${esc(item.kind)}</span>` : "";
+        const small = qStr ? highlightSnippet(hint, qStr) : esc(hint);
+        return `
+          <a class="nav-item" href="#/${esc(t.id)}" data-route="${esc(t.id)}">
+            ${esc(t.title)}
+            <small>${small}</small>
+            ${pill}
+          </a>
+        `;
+      }).join("") || `<p class="muted" style="padding:8px 6px;">No matches.</p>`;
 
       setActive(route);
-
-      nav.querySelectorAll("a.nav-item").forEach((a) => {
-        a.addEventListener("click", () => closeDrawer());
-      });
+      nav.querySelectorAll("a.nav-item").forEach(a => a.addEventListener("click", () => closeDrawer()));
     }
 
-    function renderNavDefault() {
+    function renderNavDefault(){
       const route = getRoute();
-      const items = orderedTopics.map((t) => ({ topic: t, hint: t.summary || "", kind: "" }));
+      const items = orderedTopics.map(t => ({ topic:t, hint:(t.summary||""), kind:"" }));
       renderNavList(items, route, "");
     }
 
-    function renderNavSearch(qRaw) {
+    function renderNavSearch(qRaw){
       const route = getRoute();
       const q = qRaw.trim().toLowerCase();
-      if (!q) { renderNavDefault(); return; }
+      if(!q){ renderNavDefault(); return; }
 
       const results = [];
-      for (const t of orderedTopics) {
+      for(const t of orderedTopics){
         const hay = topicSearchText(t);
-        const lower = hay.toLowerCase();
-        if (!lower.includes(q)) continue;
-
-        let hint = "";
-        let kind = "match";
+        if(!hay.toLowerCase().includes(q)) continue;
 
         const titleSummary = [t.title, t.summary].filter(Boolean).join(" — ");
-        if (titleSummary.toLowerCase().includes(q)) {
-          hint = titleSummary;
-          kind = "title/summary";
-        } else {
-          const snip = makeSnippet(hay, q);
-          hint = snip || t.summary || "";
-          kind = "content";
+        if(titleSummary.toLowerCase().includes(q)){
+          results.push({ topic:t, hint:titleSummary, kind:"title/summary" });
+        }else{
+          results.push({ topic:t, hint: makeSnippet(hay, q) || t.summary || "", kind:"content" });
         }
-
-        results.push({ topic: t, hint, kind });
       }
 
-      results.sort((a, b) => {
-        const w = (x) => (x.kind === "title/summary" ? 0 : 1);
-        return w(a) - w(b) || a.topic.title.localeCompare(b.topic.title);
-      });
-
+      results.sort((a,b) => (a.kind === "title/summary" ? -1 : 1) - (b.kind === "title/summary" ? -1 : 1));
       renderNavList(results, route, q);
     }
 
-    async function init() {
-      const res = await fetch(DATA_URL, { cache: "no-store" });
-      if (!res.ok) throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
+    async function init(){
+      const res = await fetch(DATA_URL, { cache:"no-store" });
+      if(!res.ok) throw new Error(`Failed to load ${DATA_URL}: ${res.status}`);
       manual = await res.json();
 
       orderedTopics = (manual.topics || []).filter(t => t && t.disabled !== true);
@@ -826,23 +731,19 @@
 
       document.getElementById("appTitle").textContent = `${manual.model}`;
 
-      if (!topicsById.has(getRoute())) location.hash = "#/home";
-      if (!location.hash) location.hash = "#/home";
+      if(!topicsById.has(getRoute())) location.hash = "#/home";
+      if(!location.hash) location.hash = "#/home";
 
       renderNavDefault();
-
       navSearch.addEventListener("input", () => renderNavSearch(navSearch.value));
 
-      window.addEventListener("hashchange", () => {
-        render();
-        setActive(getRoute());
-      });
+      window.addEventListener("hashchange", () => { render(); setActive(getRoute()); });
 
       render();
       closeDrawer();
     }
 
-    init().catch((err) => {
+    init().catch(err => {
       document.getElementById("content").innerHTML = `
         <section class="card">
           <h1 class="title">Error</h1>
@@ -853,5 +754,4 @@
     });
   </script>
 </body>
-
 </html>

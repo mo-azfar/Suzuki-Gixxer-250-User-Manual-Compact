@@ -1,11 +1,6 @@
 
 {
-  "model": "GSX250RL",
-  "source": {
-    "document": "GIXXER-250FSF.pdf",
-    "publisher": "Suzuki",
-    "region": "Philippines"
-  },
+  "model": "Suzuki Gixxer 250",
   "categories": [
     { "id": "home", "title": "Home" },
     { "id": "fluids", "title": "Fluids & Capacities" },

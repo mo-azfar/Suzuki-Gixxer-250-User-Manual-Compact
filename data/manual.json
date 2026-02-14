@@ -22,9 +22,7 @@
             "id": "home",
             "title": "Home",
             "summary": "Suzuki Gixxer 250 Specifications",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "sections"
@@ -94,9 +92,7 @@
             "id": "serial-number-location",
             "title": "Serial Number Location",
             "summary": "",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "sections"
@@ -121,9 +117,7 @@
             "id": "engine-oil",
             "title": "Engine Oil",
             "summary": "",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "data"
@@ -156,9 +150,7 @@
             "id": "tyre",
             "title": "Tyre",
             "summary": "Front / Rear tyre",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "data"
@@ -190,9 +182,7 @@
             "id": "battery-sparkplug-brakefluid-turnsignal",
             "title": "Battery, Spark Plug, Brake Fluid, Turn Signal Bulb",
             "summary": "",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "data"
@@ -221,9 +211,7 @@
             "id": "adjustment",
             "title": "Adjustment",
             "summary": "adjusting headlight beam, body parts removal",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "sections"
@@ -293,9 +281,7 @@
             "id": "fuse",
             "title": "Fuse",
             "summary": "",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "sections"
@@ -344,9 +330,7 @@
             "id": "maintenance-schedule",
             "title": "Maintenance Schedule",
             "summary": "",
-            "applicable_models": [
-                "Gixxer 250"
-            ],
+            "applicable_models": ["Gixxer 250"],
             "blocks": [
                 {
                     "type": "sections"
@@ -365,9 +349,7 @@
             "id": "topic-id",
             "title": "Topic Title",
             "summary": "This is template content for a topic. Replace with actual content.",
-            "applicable_models": [
-                "Model Name"
-            ],
+            "applicable_models": ["Model Name"],
             "disabled": true,
             "blocks": [
                 {
@@ -387,17 +369,12 @@
                 {
                     "heading": "Section Heading",
                     "open": false,
-                    "bullets": [
-                        "Bullet point 1",
-                        "Bullet point 2"
-                    ]
+                    "bullets": ["Bullet point 1", "Bullet point 2"]
                 },
                 {
                     "heading": "Another Section",
                     "open": true,
-                    "bullets": [
-                        "Another bullet point"
-                    ]
+                    "bullets": ["Another bullet point"]
                 }
             ]
         }

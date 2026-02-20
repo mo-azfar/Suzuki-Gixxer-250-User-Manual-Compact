@@ -15,14 +15,18 @@
         "img12": "data/air-filter-removal-2.png",
         "img13": "data/fuse.png",
         "img14": "data/maintenance-schedule-1.png",
-        "img15": "data/maintenance-schedule-2.png"
+        "img15": "data/maintenance-schedule-2.png",
+        "img16": "data/meter-instrument-panel.png",
+        "img17": "data/odometer-trip.png"
     },
     "topics": [
         {
             "id": "home",
             "title": "Home",
             "summary": "Suzuki Gixxer 250 Specifications",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "sections"
@@ -92,7 +96,9 @@
             "id": "serial-number-location",
             "title": "Serial Number Location",
             "summary": "",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "sections"
@@ -102,13 +108,68 @@
                 {
                     "heading": "Frame / Chassis Number",
                     "bullets": [
-                        "Stamped on the steering head tube on right hand side. [IMG#img1]"
+                        "Stamped on the steering head tube on right hand side. [INLINEIMG#img1]"
                     ]
                 },
                 {
                     "heading": "Engine Number",
                     "bullets": [
-                        "Stamped on the crankcase on the left hand side. [IMG#img2]"
+                        "Stamped on the crankcase on the left hand side. [INLINEIMG#img2]"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "meter-instrument-panel",
+            "title": "Meter / Instrument Panel",
+            "summary": "",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
+            "blocks": [
+                {
+                    "type": "sections"
+                }
+            ],
+            "sections": [
+                {
+                    "heading": "Meter / Instrument Panel Overview",
+                    "bullets": [
+                        "[INLINEIMG#img16]"
+                    ]
+                },
+                {
+                    "heading": "Odomoter / Trip Meter (14)",
+                    "bullets": [
+                        "The display meter can be toggled between odometer, trip meter A and trip meter B by pressing the SEL button (1). [IMG#img17]",
+                        "To reset trip meter A or B, push the ADJ button (2) for 2 seconds while the desired trip meter is displayed."
+                    ]
+                },
+                {
+                    "heading": "Reset Oil Change Indicator (12)",
+                    "bullets": [
+                        "Turn off the ignition switch.",
+                        "Press and hold SEL button (1) and turn on ignition switch. Keep holding the SEL button (1) for 4 seconds",
+                        "The oil change counter will reset and the oil change indicator will blink 3 times and then turn off.",
+                        "NOTE: The factory preset interval is 5000 km."
+                    ]
+                },
+                {
+                    "heading": "Preset Oil Change Interval Indicator (12)",
+                    "bullets": [
+                        "Set the meter to odometer, then press and hold the ADJ button (2) for 2 seconds until the interval and oil change indicator start blinking.",
+                        "Push the SEL button (1) to decrease the interval from 5000 km to 500 km.",
+                        "Push the ADJ button (2) to increase the interval from 500 km to 5000 km.",
+                        "To exit the preset mode, press and hold the SEL button (1) AND ADJ button (2) for 2 seconds."
+                    ]
+                },
+                {
+                    "heading": "Clock Adjustment (15)",
+                    "bullets": [
+                        "Press and hold the SEL button (1) AND ADJ button (2) simultaneously for 2 seconds to enter clock adjustment mode. The hour and minute digits will start blinking.",
+                        "Push the SEL button (1) to adjust the hour.",
+                        "Push the ADJ button (2) to adjust the minute.",
+                        "To exit the clock adjustment mode, press and hold the SEL button (1) AND ADJ button (2) simultaneously for 2 seconds."
                     ]
                 }
             ]
@@ -117,7 +178,9 @@
             "id": "engine-oil",
             "title": "Engine Oil",
             "summary": "",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "data"
@@ -147,10 +210,12 @@
             ]
         },
         {
-            "id": "tyre",
-            "title": "Tyre",
-            "summary": "Front / Rear tyre",
-            "applicable_models": ["Gixxer 250"],
+            "id": "tyre-sprocket-chain",
+            "title": "Tyre, Sprocket, Chain",
+            "summary": "Front / Rear tyre, Sprocket, Chain",
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "data"
@@ -175,6 +240,18 @@
                 {
                     "label": "Rear Inflation Pressure (Cold)",
                     "value": "33 psi (225 kPa)"
+                },
+                {
+                    "label": "Sprocket Teeth",
+                    "value": "Front: 13T, Rear: 40T"
+                },
+                {
+                    "label": "Chain Pitch",
+                    "value": "520"
+                },
+                {
+                    "label": "Chain Length",
+                    "value": "114 links"
                 }
             ]
         },
@@ -182,7 +259,9 @@
             "id": "battery-sparkplug-brakefluid-turnsignal",
             "title": "Battery, Spark Plug, Brake Fluid, Turn Signal Bulb",
             "summary": "",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "data"
@@ -211,7 +290,9 @@
             "id": "adjustment",
             "title": "Adjustment",
             "summary": "adjusting headlight beam, body parts removal",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "sections"
@@ -281,7 +362,9 @@
             "id": "fuse",
             "title": "Fuse",
             "summary": "",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "sections"
@@ -330,7 +413,9 @@
             "id": "maintenance-schedule",
             "title": "Maintenance Schedule",
             "summary": "",
-            "applicable_models": ["Gixxer 250"],
+            "applicable_models": [
+                "Gixxer 250"
+            ],
             "blocks": [
                 {
                     "type": "sections"
@@ -340,7 +425,7 @@
                 {
                     "heading": "Maintenance Schedule",
                     "bullets": [
-                        "NOTE:  I= Inspect and clean, adjust, replace or lubricate as necessary; R= Replace; T = Tighten. [IMG#img14] [IMG#img15]"
+                        "NOTE:  I= Inspect and clean, adjust, replace or lubricate as necessary; R= Replace; T = Tighten. [INLINEIMG#img14] [INLINEIMG#img15]"
                     ]
                 }
             ]
@@ -349,7 +434,9 @@
             "id": "topic-id",
             "title": "Topic Title",
             "summary": "This is template content for a topic. Replace with actual content.",
-            "applicable_models": ["Model Name"],
+            "applicable_models": [
+                "Model Name"
+            ],
             "disabled": true,
             "blocks": [
                 {
@@ -369,12 +456,17 @@
                 {
                     "heading": "Section Heading",
                     "open": false,
-                    "bullets": ["Bullet point 1", "Bullet point 2"]
+                    "bullets": [
+                        "Bullet point 1",
+                        "Bullet point 2"
+                    ]
                 },
                 {
                     "heading": "Another Section",
                     "open": true,
-                    "bullets": ["Another bullet point"]
+                    "bullets": [
+                        "Another bullet point"
+                    ]
                 }
             ]
         }

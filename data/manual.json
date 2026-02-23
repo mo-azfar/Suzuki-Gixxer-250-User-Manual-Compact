@@ -139,37 +139,37 @@
                     ]
                 },
                 {
-                    "heading": "Odomoter / Trip Meter (14)",
+                    "heading": "Odomoter / Trip Meter [number:14]",
                     "bullets": [
-                        "The display meter can be toggled between odometer, trip meter A and trip meter B by pressing the SEL button (1). [IMG#img17]",
-                        "To reset trip meter A or B, push the ADJ button (2) for 2 seconds while the desired trip meter is displayed."
+                        "The display meter can be toggled between odometer, trip meter A and trip meter B by pressing the SEL button [number:1]. [IMG#img17]",
+                        "To reset trip meter A or B, push the ADJ button [number:2] for 2 seconds while the desired trip meter is displayed."
                     ]
                 },
                 {
-                    "heading": "Reset Oil Change Indicator (12)",
+                    "heading": "Reset Oil Change Indicator [number:12]",
                     "bullets": [
                         "Turn off the ignition switch.",
-                        "Press and hold SEL button (1) and turn on ignition switch. Keep holding the SEL button (1) for 4 seconds",
+                        "Press and hold SEL button [number:1] and turn on ignition switch. Keep holding the SEL button [number:1] for 4 seconds",
                         "The oil change counter will reset and the oil change indicator will blink 3 times and then turn off.",
                         "NOTE: The factory preset interval is 5000 km."
                     ]
                 },
                 {
-                    "heading": "Preset Oil Change Interval Indicator (12)",
+                    "heading": "Preset Oil Change Interval Indicator [number:12]",
                     "bullets": [
-                        "Set the meter to odometer, then press and hold the ADJ button (2) for 2 seconds until the interval and oil change indicator start blinking.",
-                        "Push the SEL button (1) to decrease the interval from 5000 km to 500 km.",
-                        "Push the ADJ button (2) to increase the interval from 500 km to 5000 km.",
-                        "To exit the preset mode, press and hold the SEL button (1) AND ADJ button (2) for 2 seconds."
+                        "Set the meter to odometer, then press and hold the ADJ button [number:2] for 2 seconds until the interval and oil change indicator start blinking.",
+                        "Push the SEL button [number:1] to decrease the interval from 5000 km to 500 km.",
+                        "Push the ADJ button [number:2] to increase the interval from 500 km to 5000 km.",
+                        "To exit the preset mode, press and hold the SEL button [number:1] AND ADJ button [number:2] for 2 seconds."
                     ]
                 },
                 {
-                    "heading": "Clock Adjustment (15)",
+                    "heading": "Clock Adjustment [number:15]",
                     "bullets": [
-                        "Press and hold the SEL button (1) AND ADJ button (2) simultaneously for 2 seconds to enter clock adjustment mode. The hour and minute digits will start blinking.",
-                        "Push the SEL button (1) to adjust the hour.",
-                        "Push the ADJ button (2) to adjust the minute.",
-                        "To exit the clock adjustment mode, press and hold the SEL button (1) AND ADJ button (2) simultaneously for 2 seconds."
+                        "Press and hold the SEL button [number:1] AND ADJ button [number:2] simultaneously for 2 seconds to enter clock adjustment mode. The hour and minute digits will start blinking.",
+                        "Push the SEL button [number:1] to adjust the hour.",
+                        "Push the ADJ button [number:2] to adjust the minute.",
+                        "To exit the clock adjustment mode, press and hold the SEL button [number:1] AND ADJ button [number:2] simultaneously for 2 seconds."
                     ]
                 }
             ]
@@ -302,9 +302,9 @@
                 {
                     "heading": "1. Headlight Beam Adjustment",
                     "bullets": [
-                        "Loose the headlight beam adjuster bolt (1) on the left hand side of the headlight assembly.",
+                        "Loose the headlight beam adjuster bolt [number:1] on the left hand side of the headlight assembly.",
                         "Move headlight up or down to adjust the beam",
-                        "Tight the headlight beam adjuster bolt (1) to secure the position [IMG#img3]"
+                        "Tight the headlight beam adjuster bolt [number:1] to secure the position [IMG#img3]"
                     ]
                 },
                 {
@@ -318,7 +318,7 @@
                     "heading": "3. Front Seat Removal",
                     "bullets": [
                         "Remove seat lock.",
-                        "Remove the two bolts (1) securing the front seat.",
+                        "Remove the two bolts [number:1] securing the front seat.",
                         "Lift the rear part of the front seat and slide it backward to remove. [IMG#img5]"
                     ]
                 },
@@ -344,15 +344,15 @@
                     "bullets": [
                         "Remove seat lock, front seat and left frame cover.",
                         "Disconnect the negative terminal first, then disconnect the positive terminal.",
-                        "Remove battery band (1) and bolt (2). [IMG#img9]",
-                        "Pull the rear frame cover (3) and pull out the battery. [IMG#img10]"
+                        "Remove battery band [number:1] and bolt [number:2]. [IMG#img9]",
+                        "Pull the rear frame cover [number:3] and pull out the battery. [IMG#img10]"
                     ]
                 },
                 {
                     "heading": "7. Air Filter Removal",
                     "bullets": [
                         "Remove seat lock, front seat and left frame cover.",
-                        "Remove the screws and air cleaner cap (1). [IMG#img11]",
+                        "Remove the screws and air cleaner cap [number:1]. [IMG#img11]",
                         "Pull out the air filter element and replace if necessary. [IMG#img12]"
                     ]
                 }

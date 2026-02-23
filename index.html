@@ -431,6 +431,26 @@
                 font-size: 11px;
             }
 
+            /* Number-in-circle style used by [number:N] token */
+            .num-circle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 28px;
+                height: 28px;
+                border-radius: 999px;
+                background: rgba(90, 169, 255, 0.18);
+                color: var(--text);
+                border: 1px solid rgba(90, 169, 255, 0.55);
+                font-size: 12px;
+                font-weight: 700;
+                padding: 0 6px;
+                margin-left: 3px;
+                margin-right: 3px;
+                line-height: 1;
+                vertical-align: middle;
+            }
+
             .inline-img {
                 display: block;
                 max-width: 100%;
@@ -691,6 +711,11 @@
                         ? ICONS[key]
                         : `<span class="muted">[icon:${esc(key)}]</span>`;
                 });
+
+                // Support [number:N] tokens -> render as circled number
+                s = s.replace(/\[number:\s*(\d+)\s*\]/g, (m, n) =>
+                    `<span class="num-circle" aria-hidden="true">${esc(n)}</span>`,
+                );
 
                 return s;
             }
